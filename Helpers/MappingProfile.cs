@@ -12,7 +12,7 @@ namespace officeeatsbackendapi.Helpers
             CreateMap<Users, UsersDto>();
             CreateMap<RegisterUserDto, Users>();
 
-            CreateMap<LogInDto, Users>();
+            CreateMap<Users, LogInDto>();
             CreateMap<ChangePasswordDto, Users>();
         }
     }

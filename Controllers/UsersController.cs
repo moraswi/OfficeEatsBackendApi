@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using officeeatsbackendapi.Dtos;
 using officeeatsbackendapi.Interfaces.Services;
 using officeeatsbackendapi.Models;
+using officeeatsbackendapi.Services;
 
 namespace pepbackendapi.Controllers
 {
@@ -36,6 +37,35 @@ namespace pepbackendapi.Controllers
             }
         }
 
+        
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LogInDto logInDto)
+        {
+            var response = await _usersService.LogInAsync(logInDto);
+
+            if (!response.Success)
+            {
+                return BadRequest(response.Message);
+            }
+
+            return StatusCode(200, response.Data);
+        }
+
+
+        [HttpPost("change-password")]
+        public async Task<bool> ChangePassword([FromBody] ChangePasswordDto changePassword)
+        {
+            try
+            {
+                var results = await _usersService.ChangePasswordAsync(changePassword);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         [HttpGet("users")]
         public async Task<IActionResult> GetAllUsers()
         {
@@ -63,5 +93,21 @@ namespace pepbackendapi.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+
+
+        [HttpDelete("user/{userid}")]
+        public async Task<bool> DeleteUser(int userid)
+        {
+            try
+            {
+                var results = await _usersService.DeleteUserAsync(userid);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
     }
 }

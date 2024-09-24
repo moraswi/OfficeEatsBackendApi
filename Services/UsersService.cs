@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Azure;
+using officeeatsbackendapi.Class;
 using officeeatsbackendapi.Dtos;
 using officeeatsbackendapi.Interfaces.Repository;
 using officeeatsbackendapi.Interfaces.Services;
@@ -20,9 +22,17 @@ namespace officeeatsbackendapi.Services
             _mapper = mapper;
         }
 
-        public Task<bool> ChangePasswordAsync(ChangePasswordDto changePasswordDto)
+        public async Task<bool> ChangePasswordAsync(ChangePasswordDto changePasswordDto)
         {
-            throw new NotImplementedException();
+            var user = await _usersRepository.GetUserByUserIdAsync(changePasswordDto.UserId);
+
+            if(user == null || VerifyPassword(changePasswordDto.CurrentPassword, user.Password))
+            {
+                return false;
+            }
+
+            var results = await _usersRepository.ChangePasswordAsync(changePasswordDto.UserId, changePasswordDto.NewPassword);
+            return results;
         }
 
         public Task<bool> DeleteUserAsync(int userId)
@@ -67,9 +77,24 @@ namespace officeeatsbackendapi.Services
             return userDto;
         }
 
-        public Task<LogInDto> LogInAsync(LogInDto logIn)
+        public async Task<ServiceResponse<UsersDto>> LogInAsync(LogInDto logIn)
         {
-            throw new NotImplementedException();
+            var response = new ServiceResponse<UsersDto>();
+            var result = await _usersRepository.GetUserByEmailAsync(logIn.Email);
+
+            if(result == null || !VerifyPassword(logIn.Password, result.Password))
+            {
+                response.Success = false;
+                response.Message = "Invalid username or password.";
+                return response;
+            }
+
+            var userResponse = _mapper.Map<UsersDto>(result);
+
+            response.Data = userResponse;
+            response.Success = true;
+            return response;
+
         }
 
         public async Task RegisterUserAsync(RegisterUserDto registerUser)
