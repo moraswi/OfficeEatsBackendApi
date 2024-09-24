@@ -20,7 +20,7 @@ namespace officeeatsbackendapi.Interfaces.Services
 
         Task<Users> UpdateUserAsync(Users user);
 
-        Task<bool> ChangePasswordAsync(ChangePasswordDto changePasswordDto);
+        Task<bool> ChangePasswordAsync(ChangePasswordDto changePassword);
 
         Task<bool> DeleteUserAsync(int userId);
 

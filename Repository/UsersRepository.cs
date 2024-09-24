@@ -92,7 +92,8 @@ namespace pepbackendapi.Repository
 
         private string HashPassword(string password)
         {
-            return password;
+          
+            return BCrypt.Net.BCrypt.HashPassword(password);
         }
     }
 }

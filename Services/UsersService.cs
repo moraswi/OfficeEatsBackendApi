@@ -21,17 +21,18 @@ namespace officeeatsbackendapi.Services
             _usersRepository = usersRepository;
             _mapper = mapper;
         }
+        #endregion Public Constructors
 
-        public async Task<bool> ChangePasswordAsync(ChangePasswordDto changePasswordDto)
+        public async Task<bool> ChangePasswordAsync(ChangePasswordDto changePassword)
         {
-            var user = await _usersRepository.GetUserByUserIdAsync(changePasswordDto.UserId);
+            var user = await _usersRepository.GetUserByUserIdAsync(changePassword.UserId);
 
-            if(user == null || VerifyPassword(changePasswordDto.CurrentPassword, user.Password))
+            if(user == null || VerifyPassword(changePassword.CurrentPassword, user.Password))
             {
                 return false;
             }
 
-            var results = await _usersRepository.ChangePasswordAsync(changePasswordDto.UserId, changePasswordDto.NewPassword);
+            var results = await _usersRepository.ChangePasswordAsync(changePassword.UserId, changePassword.NewPassword);
             return results;
         }
 
@@ -40,7 +41,6 @@ namespace officeeatsbackendapi.Services
             var results = _usersRepository.DeleteUserAsync(userId);
             return results;
         }
-        #endregion Public Constructors
 
 
         public async Task<IEnumerable<UsersDto>> GetAllUsersAsync()
