@@ -1,0 +1,6 @@
+@officeeatsbackendapi_HostAddress = http://localhost:5164
+
+GET {{officeeatsbackendapi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
