@@ -6,7 +6,7 @@ namespace officeeatsbackendapi.Interfaces.Services
 {
     public interface IUsersService
     {
-        Task RegisterUserAsync(RegisterUserDto registerUser);
+        Task<ServiceResponse<UsersDto>> RegisterUserAsync(RegisterUserDto registerUser);
 
         Task<IEnumerable<UsersDto>> GetAllUsersAsync();
 

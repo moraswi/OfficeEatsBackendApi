@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Azure;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using officeeatsbackendapi.Dtos;
 using officeeatsbackendapi.Interfaces.Services;
@@ -28,12 +29,18 @@ namespace pepbackendapi.Controllers
 
             try
             {
-                await _usersService.RegisterUserAsync(registerUser);
+                var response = await _usersService.RegisterUserAsync(registerUser);
+
+                if (!response.Success)
+                {
+                    return StatusCode(400, new { message = response.Message });
+                }
+
                 return StatusCode(200, registerUser);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Internal server error");
+                return StatusCode(500, new { message = "Internal server error" });
             }
         }
 
@@ -45,7 +52,7 @@ namespace pepbackendapi.Controllers
 
             if (!response.Success)
             {
-                return BadRequest(response.Message);
+                return StatusCode(400, new { message = response.Message });
             }
 
             return StatusCode(200, response.Data);
@@ -76,7 +83,7 @@ namespace pepbackendapi.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Internal server error");
+                return StatusCode(500, new { message = "Internal server error" });
             }
         }
 
@@ -90,7 +97,7 @@ namespace pepbackendapi.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Internal server error");
+                return StatusCode(500, new { message = "Internal server error" });
             }
         }
 

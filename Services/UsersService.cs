@@ -97,12 +97,41 @@ namespace officeeatsbackendapi.Services
 
         }
 
-        public async Task RegisterUserAsync(RegisterUserDto registerUser)
+        public async Task<ServiceResponse<UsersDto>> RegisterUserAsync(RegisterUserDto registerUser)
         {
+            var response = new ServiceResponse<UsersDto>();
+
+            var existingUserByEmail = await _usersRepository.GetUserByEmailAsync(registerUser.Email);
+
+            if (existingUserByEmail != null) {
+                response.Success = false;
+                response.Message = "User with this email already exists.";
+                return response;
+            }
+
+            var existingUserByPhoneNumber = await _usersRepository.GetUserByPhoneNumberAsync(registerUser.PhoneNumber);
+           
+            if (existingUserByPhoneNumber != null)
+            {
+                response.Success = false;
+                response.Message = "User with this phone number already exists.";
+                return response;
+            }
+
             var results = _mapper.Map<Users>(registerUser);
+
             results.Password = BCrypt.Net.BCrypt.HashPassword(registerUser.Password);
 
             await _usersRepository.RegisterUserAsync(results);
+
+            var userDto = _mapper.Map<UsersDto>(results);
+
+            response.Data = userDto;
+            response.Success = true;
+            response.Message = "User registered successfully.";
+
+            return response;
+
         }
 
         public Task<Users> UpdateUserAsync(Users user)
