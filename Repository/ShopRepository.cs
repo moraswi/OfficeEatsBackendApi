@@ -1,4 +1,5 @@
-﻿using officeeatsbackendapi.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using officeeatsbackendapi.Data;
 using officeeatsbackendapi.Interfaces.Repository;
 using officeeatsbackendapi.Models;
 
@@ -22,9 +23,14 @@ namespace officeeatsbackendapi.Repository
         public async Task<Shops> AddShopAsync(Shops shops)
         {
             await _context.Shops.AddAsync(shops);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return shops;
         }
 
+        public async Task<IEnumerable<Shops>> GetShopByOfficeIdAsync(int officeId)
+        {
+            var shop = await _context.Shops.Where(x => x.OfficeId == officeId).ToListAsync();
+            return shop;
+        }
     }
 }

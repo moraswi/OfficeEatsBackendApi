@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using officeeatsbackendapi.Dtos;
 using officeeatsbackendapi.Interfaces.Services;
+using officeeatsbackendapi.Models;
 using officeeatsbackendapi.Services;
 
 namespace officeeatsbackendapi.Controllers
@@ -27,6 +28,20 @@ namespace officeeatsbackendapi.Controllers
             try
             {
                 var results = await _shopServices.AddShopAsync(shops);
+                return StatusCode(200, results);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error" });
+            }
+        }
+
+        [HttpGet("shop/{officeid}")]
+        public async Task<IActionResult> GetShopByOfficeId([FromRoute] int officeid)
+        {
+            try
+            {
+                var results = await _shopServices.GetShopByOfficeIdAsync(officeid);
                 return StatusCode(200, results);
             }
             catch (Exception ex)

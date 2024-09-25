@@ -22,12 +22,17 @@ namespace officeeatsbackendapi.Services
         }
         #endregion Public Constructors
 
-        public async Task<ShopsDto> AddShopAsync(ShopsDto shops)
+        public async Task<Shops> AddShopAsync(ShopsDto shops)
         {
             var shopEntity = _mapper.Map<Shops>(shops);
             var results = await _shopRepository.AddShopAsync(shopEntity);
-            return _mapper.Map<ShopsDto>(shopEntity);
+            return results;
         }
 
+        public async Task<IEnumerable<Shops>> GetShopByOfficeIdAsync(int officeId)
+        {
+            var shop = await _shopRepository.GetShopByOfficeIdAsync(officeId);
+            return shop;
+        }
     }
 }

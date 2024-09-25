@@ -5,6 +5,9 @@ namespace officeeatsbackendapi.Interfaces.Services
 {
     public interface IShopServices
     {
-        Task<ShopsDto> AddShopAsync(ShopsDto shops);
+        Task<Shops> AddShopAsync(ShopsDto shops);
+
+        Task<IEnumerable<Shops>> GetShopByOfficeIdAsync(int officeId);
+
     }
 }
