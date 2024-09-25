@@ -23,10 +23,12 @@ builder.Services.AddDbContext<DataContext>(options =>
 //Repository
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 builder.Services.AddScoped<IOfficesRepository, OfficesRepository>();
+builder.Services.AddScoped<IShopRepository, ShopRepository>();
 
 //services
 builder.Services.AddScoped<IUsersService, UsersService>();
 builder.Services.AddScoped<IOfficesServices, OfficesServices>();
+builder.Services.AddScoped<IShopServices, ShopServices>();
 
 //AddAutoMapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

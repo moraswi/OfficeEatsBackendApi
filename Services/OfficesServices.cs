@@ -28,10 +28,10 @@ namespace officeeatsbackendapi.Services
             return _mapper.Map<OfficesDto>(officeEntity);
         }
 
-        public async Task<IEnumerable<OfficesDto>> GetAllOfficesAsync()
+        public async Task<IEnumerable<Offices>> GetAllOfficesAsync()
         {
            var office = await _officesRepository.GetAllOfficesAsync();
-            return _mapper.Map<IEnumerable<OfficesDto>>(office);
+            return office;
         }
 
     }

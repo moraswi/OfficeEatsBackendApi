@@ -26,15 +26,15 @@ namespace officeeatsbackendapi.Controllers
         [HttpPost("office")]
         public async Task<IActionResult> AddOffice([FromBody] OfficesDto Offices)
         {
-            //try
-            //{
+            try
+            {
                 var results = await _officesServices.AddOfficeAsync(Offices);
                 return StatusCode(200, results);
-            //}
-            //catch (Exception ex)
-            //{
-            //    return StatusCode(500, new { message = "Internal server error" });
-            //}
+        }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error" });
+            }
         }
 
         [HttpGet("offices")]
