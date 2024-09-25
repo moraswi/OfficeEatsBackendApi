@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using officeeatsbackendapi.Data;
 using officeeatsbackendapi.Interfaces.Repository;
 using officeeatsbackendapi.Interfaces.Services;
+using officeeatsbackendapi.Repository;
 using officeeatsbackendapi.Services;
 using pepbackendapi.Repository;
 
@@ -21,9 +22,11 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 //Repository
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+builder.Services.AddScoped<IOfficesRepository, OfficesRepository>();
 
 //services
 builder.Services.AddScoped<IUsersService, UsersService>();
+builder.Services.AddScoped<IOfficesServices, OfficesServices>();
 
 //AddAutoMapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

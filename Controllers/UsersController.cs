@@ -1,5 +1,6 @@
 ﻿using Azure;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using officeeatsbackendapi.Dtos;
 using officeeatsbackendapi.Interfaces.Services;
@@ -101,6 +102,19 @@ namespace pepbackendapi.Controllers
             }
         }
 
+        //[HttpPut("users")]
+        //public async Task<IActionResult> UpdateUser([FromBody] UsersDto user) {
+
+        //    try
+        //    {
+        //        await _usersService.UpdateUserAsync(user);
+        //        return StatusCode(200, user);
+        //}
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, new { message = "Internal server error" });
+        //    }
+        //}
 
         [HttpDelete("user/{userid}")]
         public async Task<bool> DeleteUser(int userid)

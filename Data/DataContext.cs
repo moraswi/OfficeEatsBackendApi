@@ -11,5 +11,7 @@ namespace officeeatsbackendapi.Data
 
         public DbSet<Users> Users { get; set; }
 
+        public DbSet<Offices> Offices { get; set; }
+        
     }
 }

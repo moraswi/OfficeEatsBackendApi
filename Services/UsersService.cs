@@ -134,9 +134,12 @@ namespace officeeatsbackendapi.Services
 
         }
 
-        public Task<Users> UpdateUserAsync(Users user)
+        public async Task<UsersDto> UpdateUserAsync(UsersDto user)
         {
-            throw new NotImplementedException();
+            var mapUser = _mapper.Map<Users>(user);
+            var results = await _usersRepository.UpdateUserAsync(mapUser);
+            var userDto = _mapper.Map<UsersDto>(results);
+            return userDto;
         }
 
         private static bool VerifyPassword(string currentPassword, string storedPassword)

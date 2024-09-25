@@ -10,10 +10,18 @@ namespace officeeatsbackendapi.Helpers
         public MappingProfile() {
           
             CreateMap<Users, UsersDto>();
+            CreateMap<UsersDto, Users>();
+
             CreateMap<RegisterUserDto, Users>();
 
             CreateMap<Users, LogInDto>();
             CreateMap<ChangePasswordDto, Users>();
+
+            CreateMap<Offices, OfficesDto>();
+            CreateMap<OfficesDto, Offices>();
+
+
+
         }
     }
 }
