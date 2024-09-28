@@ -25,7 +25,13 @@ namespace officeeatsbackendapi.Helpers
 
             CreateMap<AddressesDto, Addresses>();
             CreateMap<Addresses, AddressesDto>();
+
+            CreateMap<CategoriesDto, Categories>();
+            CreateMap<Categories, CategoriesDto>();
+
             
+
+
         }
     }
 }
