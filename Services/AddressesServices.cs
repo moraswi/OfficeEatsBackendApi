@@ -34,5 +34,17 @@ namespace officeeatsbackendapi.Services
             var results = await _addressesRepository.AddAddress(addressEntity);
             return results;
         }
+
+        public async Task<Addresses> UpdateAddressesAsync(Addresses addresses)
+        {
+            await _addressesRepository.UpdateAddressesAsync(addresses);
+            return addresses;
+        }
+
+        public async Task<bool> DeteleteAddressAsync(int id)
+        {
+            await _addressesRepository.DeteleteAddressAsync(id);
+            return true;
+        }
     }
 }

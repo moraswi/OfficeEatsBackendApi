@@ -27,9 +27,27 @@ namespace officeeatsbackendapi.Repository
             return address;
         }
 
+        public async Task<bool> DeteleteAddressAsync(int id)
+        {
+            var address = await _context.Addresses.FindAsync(id);
+
+             _context.Addresses.Remove(address);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
         public async Task<IEnumerable<Addresses>> GetAddAddressByUserIdAsync(int userId)
         {
             var addresses = await _context.Addresses.Where(x => x.UserId == userId).ToListAsync();
+            return addresses;
+        }
+
+        public async Task<Addresses> UpdateAddressesAsync(Addresses addresses)
+        {
+            _context.Addresses.Update(addresses);
+            await _context.SaveChangesAsync();
+
             return addresses;
         }
     }

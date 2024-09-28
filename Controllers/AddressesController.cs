@@ -50,5 +50,33 @@ namespace officeeatsbackendapi.Controllers
             }
         }
 
+        [HttpPut("address")]
+        public async Task<IActionResult> UpdateAddress([FromBody] Addresses Offices)
+        {
+            try
+            {
+                var results = await _addressesServices.UpdateAddressesAsync(Offices);
+                return StatusCode(200, results);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error" });
+            }
+        }
+
+        [HttpDelete("address/{id}")]
+        public async Task<IActionResult> DeleteAddress([FromRoute] int id)
+        {
+            try
+            {
+                var results = await _addressesServices.DeteleteAddressAsync(id);
+                return StatusCode(200, results);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error" });
+            }
+        }
+
     }
 }
