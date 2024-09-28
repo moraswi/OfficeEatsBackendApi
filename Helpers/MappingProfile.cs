@@ -29,8 +29,8 @@ namespace officeeatsbackendapi.Helpers
             CreateMap<CategoriesDto, Categories>();
             CreateMap<Categories, CategoriesDto>();
 
-            
-
+            CreateMap<StoreMenuDto, StoreMenu>();
+            CreateMap<StoreMenu, StoreMenuDto>();
 
         }
     }

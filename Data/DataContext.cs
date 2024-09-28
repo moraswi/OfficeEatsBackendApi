@@ -19,5 +19,7 @@ namespace officeeatsbackendapi.Data
 
         public DbSet<Categories> Categories { get; set; }
 
+        public DbSet<StoreMenu> StoreMenu { get; set; }
+
     }
 }

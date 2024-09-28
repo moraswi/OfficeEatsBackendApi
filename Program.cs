@@ -26,6 +26,7 @@ builder.Services.AddScoped<IOfficesRepository, OfficesRepository>();
 builder.Services.AddScoped<IShopRepository, ShopRepository>();
 builder.Services.AddScoped<IAddressesRepository, AddressesRepository>();
 builder.Services.AddScoped<ICategoriesRepository, CategoriesRepository>();
+builder.Services.AddScoped<IStoreMenuRepository, StoreMenuRepository>();
 
 //services
 builder.Services.AddScoped<IUsersService, UsersService>();
@@ -33,6 +34,7 @@ builder.Services.AddScoped<IOfficesServices, OfficesServices>();
 builder.Services.AddScoped<IShopServices, ShopServices>();
 builder.Services.AddScoped<IAddressesServices, AddressesServices>();
 builder.Services.AddScoped<ICategoriesService, CategoriesService>();
+builder.Services.AddScoped<IStoreMenuService, StoreMenuService>();
 
 //AddAutoMapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
