@@ -27,11 +27,28 @@ namespace officeeatsbackendapi.Repository
             return categories;
         }
 
+        public async Task<bool> DeteleteCategoryAsync(int id)
+        {
+            var category = await _context.Categories.FindAsync(id);
+
+            _context.Categories.Remove(category);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
         public async Task<IEnumerable<Categories>> GetCategoriesByStoreIdAsync(int storeId)
         {
             var categories = await _context.Categories.Where(x => x.StoreId == storeId).ToListAsync();
             return categories;
         }
 
+        public async Task<Categories> UpdateCategoryAsync(Categories categories)
+        {
+            _context.Categories.Update(categories);
+            await _context.SaveChangesAsync();
+
+            return categories;
+        }
     }
 }

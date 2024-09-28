@@ -22,7 +22,7 @@ namespace officeeatsbackendapi.Controllers
         }
         #endregion Public Constructors
 
-        [HttpPost("category")]
+        [HttpPost("menu-category")]
         public async Task<IActionResult> AddCategory([FromBody] CategoriesDto categoriesDto)
         {
             try
@@ -36,7 +36,7 @@ namespace officeeatsbackendapi.Controllers
             }
         }
 
-        [HttpGet("category/{storeid}")]
+        [HttpGet("menu-category/{storeid}")]
         public async Task<IActionResult> GetCategoriesByStoreIdAsync([FromRoute] int storeid)
         {
             try
@@ -50,32 +50,32 @@ namespace officeeatsbackendapi.Controllers
             }
         }
 
-        //[HttpPut("address")]
-        //public async Task<IActionResult> UpdateAddress([FromBody] Addresses Offices)
-        //{
-        //    try
-        //    {
-        //        var results = await _addressesServices.UpdateAddressesAsync(Offices);
-        //        return StatusCode(200, results);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, new { message = "Internal server error" });
-        //    }
-        //}
+        [HttpPut("menu-category")]
+        public async Task<IActionResult> UpdateCategory([FromBody] Categories categories)
+        {
+            try
+            {
+                var results = await _categoriesService.UpdateCategoryAsync(categories);
+                return StatusCode(200, results);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error" });
+            }
+        }
 
-        //[HttpDelete("address/{id}")]
-        //public async Task<IActionResult> DeleteAddress([FromRoute] int id)
-        //{
-        //    try
-        //    {
-        //        var results = await _addressesServices.DeteleteAddressAsync(id);
-        //        return StatusCode(200, results);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, new { message = "Internal server error" });
-        //    }
-        //}
+        [HttpDelete("menu-category/{id}")]
+        public async Task<IActionResult> DeleteAddress([FromRoute] int id)
+        {
+            try
+            {
+                var results = await _categoriesService.DeteleteCategoryAsync(id);
+                return StatusCode(200, results);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error" });
+            }
+        }
     }
 }

@@ -23,11 +23,11 @@ namespace officeeatsbackendapi.Controllers
         #endregion Public Constructors
 
         [HttpPost("address")]
-        public async Task<IActionResult> AddAddress([FromBody] AddressesDto Offices)
+        public async Task<IActionResult> AddAddress([FromBody] AddressesDto addresses)
         {
             try
             {
-                var results = await _addressesServices.AddAddress(Offices);
+                var results = await _addressesServices.AddAddress(addresses);
                 return StatusCode(200, results);
             }
             catch (Exception ex)
@@ -51,11 +51,11 @@ namespace officeeatsbackendapi.Controllers
         }
 
         [HttpPut("address")]
-        public async Task<IActionResult> UpdateAddress([FromBody] Addresses Offices)
+        public async Task<IActionResult> UpdateAddress([FromBody] Addresses addresses)
         {
             try
             {
-                var results = await _addressesServices.UpdateAddressesAsync(Offices);
+                var results = await _addressesServices.UpdateAddressesAsync(addresses);
                 return StatusCode(200, results);
             }
             catch (Exception ex)

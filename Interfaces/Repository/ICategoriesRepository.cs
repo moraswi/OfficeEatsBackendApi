@@ -8,5 +8,9 @@ namespace officeeatsbackendapi.Interfaces.Repository
         Task<Categories> AddCategoriesAsync(Categories categories);
 
         Task<IEnumerable<Categories>> GetCategoriesByStoreIdAsync(int storeId);
+
+        Task<Categories> UpdateCategoryAsync(Categories categories);
+
+        Task<bool> DeteleteCategoryAsync(int id);
     }
 }

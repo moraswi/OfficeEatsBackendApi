@@ -30,11 +30,22 @@ namespace officeeatsbackendapi.Services
             return results;
         }
 
+        public async Task<bool> DeteleteCategoryAsync(int id)
+        {
+            await _categoriesRepository.DeteleteCategoryAsync(id);
+            return true;
+        }
+
         public async Task<IEnumerable<Categories>> GetCategoriesByStoreIdAsync(int storeId)
         {
             var results = await _categoriesRepository.GetCategoriesByStoreIdAsync(storeId);
             return results;
         }
 
+        public async Task<Categories> UpdateCategoryAsync(Categories categories)
+        {
+            await _categoriesRepository.UpdateCategoryAsync(categories);
+            return categories;
+        }
     }
 }
