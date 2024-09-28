@@ -36,7 +36,7 @@ namespace officeeatsbackendapi.Controllers
             }
         }
 
-        [HttpGet("store-menu/{categoryid}")]
+        [HttpGet("store-menu/category/{categoryid}")]
         public async Task<IActionResult> GetStoreMenuByCategoryId([FromRoute] int categoryid)
         {
             try
@@ -49,6 +49,36 @@ namespace officeeatsbackendapi.Controllers
                 return StatusCode(500, new { message = "Internal server error" });
             }
         }
+
+        [HttpGet("store-menu/top-meal/{storeid}")]
+        public async Task<IActionResult> GetStoreMenueByStoreId([FromRoute] int storeid)
+        {
+            try
+            {
+                var results = await _storeMenuService.GetStoreMenueByStoreIdAsync(storeid);
+                return StatusCode(200, results);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error" });
+            }
+        }
+
+
+        [HttpGet("store-menu/promotion-meal/{storeid}")]
+        public async Task<IActionResult> GetStorePromotionMenueByStoreId([FromRoute] int storeid)
+        {
+            try
+            {
+                var results = await _storeMenuService.GetStorePromotionMenueByStoreIdAsync(storeid);
+                return StatusCode(200, results);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error" });
+            }
+        }
+
 
         [HttpPut("store-menu")]
         public async Task<IActionResult> UpdateStoreMenu([FromBody] StoreMenu storeMenu)
@@ -63,6 +93,7 @@ namespace officeeatsbackendapi.Controllers
                 return StatusCode(500, new { message = "Internal server error" });
             }
         }
+
 
         [HttpDelete("store-menu/{id}")]
         public async Task<IActionResult> DeleteStoreMenu([FromRoute] int id)

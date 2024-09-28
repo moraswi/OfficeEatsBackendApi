@@ -41,6 +41,18 @@ namespace officeeatsbackendapi.Services
             return storeMenu;
         }
 
+        public async Task<IEnumerable<StoreMenu>> GetStoreMenueByStoreIdAsync(int storeId)
+        {
+            var tomMeal = await _storeMenuRepository.GetStoreMenueByStoreIdAsync(storeId);
+            return tomMeal;
+        }
+
+        public async Task<IEnumerable<StoreMenu>> GetStorePromotionMenueByStoreIdAsync(int storeId)
+        {
+            var promotion = await _storeMenuRepository.GetStorePromotionMenueByStoreIdAsync(storeId);
+            return promotion;
+        }
+
         public async Task<StoreMenu> UpdateStoreMenuAsync(StoreMenu storeMenu)
         {
            var results = await _storeMenuRepository.UpdateStoreMenuAsync(storeMenu);
