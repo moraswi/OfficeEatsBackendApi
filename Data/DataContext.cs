@@ -21,5 +21,9 @@ namespace officeeatsbackendapi.Data
 
         public DbSet<StoreMenu> StoreMenu { get; set; }
 
+        public DbSet<OrderItem> OrderItem { get; set; }
+
+        public DbSet<Order> Order { get; set; }
+
     }
 }

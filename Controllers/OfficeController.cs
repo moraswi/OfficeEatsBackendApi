@@ -30,7 +30,7 @@ namespace officeeatsbackendapi.Controllers
             {
                 var results = await _officesServices.AddOfficeAsync(Offices);
                 return StatusCode(200, results);
-        }
+            }
             catch (Exception ex)
             {
                 return StatusCode(500, new { message = "Internal server error" });

@@ -50,7 +50,7 @@ namespace officeeatsbackendapi.Controllers
             }
         }
 
-        [HttpGet("store-menu/top-meal/{storeid}")]
+        [HttpGet("store-menu/top-meals/{storeid}")]
         public async Task<IActionResult> GetStoreMenueByStoreId([FromRoute] int storeid)
         {
             try
@@ -65,7 +65,7 @@ namespace officeeatsbackendapi.Controllers
         }
 
 
-        [HttpGet("store-menu/promotion-meal/{storeid}")]
+        [HttpGet("store-menu/promotion-meals/{storeid}")]
         public async Task<IActionResult> GetStorePromotionMenueByStoreId([FromRoute] int storeid)
         {
             try
