@@ -12,6 +12,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:8080")
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
+
+
 // DataContext
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseMySql(
