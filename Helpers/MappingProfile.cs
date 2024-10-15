@@ -32,6 +32,9 @@ namespace officeeatsbackendapi.Helpers
             CreateMap<StoreMenuDto, StoreMenu>();
             CreateMap<StoreMenu, StoreMenuDto>();
 
+            CreateMap<RateDto, Rate>();
+            CreateMap<Rate, RateDto>();
+
         }
     }
 }
