@@ -7,7 +7,7 @@ using officeeatsbackendapi.Services;
 
 namespace officeeatsbackendapi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/")]
     [ApiController]
     public class OrderController : ControllerBase
     {
@@ -33,10 +33,17 @@ namespace officeeatsbackendapi.Controllers
             return BadRequest(response);
         }
 
-        [HttpGet("order-bystoreid/{storeid}")]
+        [HttpGet("order/store/{storeid}")]
         public async Task<IActionResult> GetAllOrdersByStoreId([FromRoute] int storeid) 
         {
             var response = await _orderServices.GetAllOrdersByStoreIdAsync(storeid);
+            return StatusCode(200, response);
+        }
+
+        [HttpGet("order/user/{userid}")]
+        public async Task<IActionResult> GetOrdersByUserId([FromRoute] int userid)
+        {
+            var response = await _orderServices.GetOrdersByUserIdAsync(userid);
             return StatusCode(200, response);
         }
     }

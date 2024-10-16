@@ -21,12 +21,6 @@ namespace officeeatsbackendapi.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<Order>> GetAllOrdersByStoreIdAsync(int storeId)
-        {
-            var results = await _orderRepository.GetAllOrdersByStoreIdAsync(storeId);
-            return results;
-        }
-
         #endregion Public Constructors
         public async Task<ServiceResponse<Order>> PlaceOrderAsync(OrderDto orderDto)
         {
@@ -48,6 +42,19 @@ namespace officeeatsbackendapi.Services
             var savedOrder = await _orderRepository.AddOrderAsync(order);
 
             return new ServiceResponse<Order> { Data = savedOrder, Success = true, Message = "Order placed successfully." };
+        }
+
+
+        public async Task<IEnumerable<Order>> GetAllOrdersByStoreIdAsync(int storeId)
+        {
+            var results = await _orderRepository.GetAllOrdersByStoreIdAsync(storeId);
+            return results;
+        }
+
+        public async Task<IEnumerable<Order>> GetOrdersByUserIdAsync(int userId)
+        {
+            var results = await _orderRepository.GetOrdersByUserIdAsync(userId);
+            return results;
         }
 
     }

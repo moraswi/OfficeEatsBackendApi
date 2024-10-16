@@ -32,5 +32,11 @@ namespace officeeatsbackendapi.Repository
             var results = await _context.Order.Where(x => x.ShopId == storeId).ToListAsync();
             return results;
         }
+
+        public async Task<IEnumerable<Order>> GetOrdersByUserIdAsync(int userId)
+        {
+            var results = await _context.Order.Where(x => x.UserId == userId).ToListAsync();
+            return results;
+        }
     }
 }
