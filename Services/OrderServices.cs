@@ -49,5 +49,21 @@ namespace officeeatsbackendapi.Services
             return results;
         }
 
+        //not working well
+        public async Task<ServiceResponse<Order>> UpdateOrderAsync(OrderDto orderDto)
+        {
+            var order = _mapper.Map<Order>(orderDto);
+
+            var updatedOrder = await _orderRepository.UpdateOrderAsync(order);
+
+            return new ServiceResponse<Order>
+            {
+                Data = updatedOrder,
+                Success = true,
+                Message = "Order updated successfully."
+            };
+        }
+
+
     }
 }

@@ -33,10 +33,18 @@ namespace officeeatsbackendapi.Repository
             return results;
         }
 
+
         public async Task<IEnumerable<Order>> GetOrdersByUserIdAsync(int userId)
         {
             var results = await _context.Order.Where(x => x.UserId == userId).ToListAsync();
             return results;
+        }
+
+        public async Task<Order> UpdateOrderAsync(Order order)
+        {
+            _context.Order.Update(order);
+            await _context.SaveChangesAsync();
+            return order;
         }
     }
 }

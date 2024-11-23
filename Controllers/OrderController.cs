@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using officeeatsbackendapi.Dtos;
 using officeeatsbackendapi.Interfaces.Services;
+using officeeatsbackendapi.Models;
 using officeeatsbackendapi.Services;
 
 namespace officeeatsbackendapi.Controllers
@@ -45,6 +46,21 @@ namespace officeeatsbackendapi.Controllers
         {
             var response = await _orderServices.GetOrdersByUserIdAsync(userid);
             return StatusCode(200, response);
+        }
+
+
+        [HttpPut("order")]
+        public async Task<IActionResult> UpdateOrder([FromBody] OrderDto orderDto)
+        {
+            try
+            {
+                var results = await _orderServices.UpdateOrderAsync(orderDto);
+                return StatusCode(200, results);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error" });
+            }
         }
     }
 }

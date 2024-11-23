@@ -10,5 +10,7 @@ namespace officeeatsbackendapi.Interfaces.Repository
 
         Task<IEnumerable<Order>> GetOrdersByUserIdAsync(int userId);
 
+        Task<Order> UpdateOrderAsync(Order order);
+
     }
 }
