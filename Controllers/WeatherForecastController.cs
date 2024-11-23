@@ -18,6 +18,5 @@ namespace officeeatsbackendapi.Controllers
             _logger = logger;
         }
 
-
     }
 }
