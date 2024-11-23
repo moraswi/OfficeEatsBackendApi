@@ -4,11 +4,11 @@
     {
         public int Id { get; set; }
 
-        public string FoodItemName { get; set; }
+        public int FoodId { get; set; }
 
         public int Quantity { get; set; }
 
-        public decimal UnitPrice { get; set; }
+        //public decimal UnitPrice { get; set; }
 
         public decimal TotalPrice { get; set; }
 

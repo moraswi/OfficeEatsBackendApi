@@ -24,24 +24,16 @@ namespace officeeatsbackendapi.Services
         #endregion Public Constructors
         public async Task<ServiceResponse<Order>> PlaceOrderAsync(OrderDto orderDto)
         {
-            var order = new Order
-            {
-                UserId = orderDto.UserId,
-                DeliveryAddress = orderDto.DeliveryAddress,
-                Items = orderDto.Items.Select(i => new OrderItem
-                {
-                    Id = i.FoodItemId,
-                    Quantity = i.Quantity,
-                    UnitPrice = 100000,
-                    TotalPrice = i.Quantity * 10
-                }).ToList()
-            };
-
-            order.TotalAmount = order.Items.Sum(i => i.TotalPrice);
+            var order = _mapper.Map<Order>(orderDto);
 
             var savedOrder = await _orderRepository.AddOrderAsync(order);
 
-            return new ServiceResponse<Order> { Data = savedOrder, Success = true, Message = "Order placed successfully." };
+            return new ServiceResponse<Order>
+            {
+                Data = savedOrder,
+                Success = true,
+                Message = "Order placed successfully."
+            };
         }
 
 

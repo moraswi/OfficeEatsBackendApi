@@ -35,6 +35,13 @@ namespace officeeatsbackendapi.Helpers
             CreateMap<RateDto, Rate>();
             CreateMap<Rate, RateDto>();
 
+            CreateMap<OrderItemDto, OrderItem>()
+                  .ForMember(dest => dest.TotalPrice, opt => opt.MapFrom(src => src.Quantity * src.ItemPrice));
+
+            CreateMap<OrderDto, Order>()
+                .ForMember(dest => dest.TotalAmount, opt => opt.MapFrom(src => src.Items.Sum(i => i.Quantity * i.ItemPrice)))
+                .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items));
+
         }
     }
 }

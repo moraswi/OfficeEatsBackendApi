@@ -3,7 +3,7 @@ using officeeatsbackendapi.Data;
 using officeeatsbackendapi.Interfaces.Repository;
 using officeeatsbackendapi.Models;
 
-namespace pepbackendapi.Repository
+namespace officeeatsbackendapi.Repository
 {
     public class UsersRepository : IUsersRepository
     {

@@ -1,4 +1,4 @@
-namespace officeeatsbackendapi
+namespace OfficeEatsBackendApi
 {
     public class WeatherForecast
     {

@@ -12,9 +12,9 @@
 
         public string DeliveryAddress { get; set; }
 
-        public string PaymentStatus { get; set; } = "Pending";
+        public string PaymentMethod { get; set; }
 
-        public string DeliveryStatus { get; set; } = "Preparing";
+        public string OrderStatus { get; set; } = "Pending";
 
         public DateTime OrderDate { get; set; } = DateTime.Now;
 

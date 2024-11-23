@@ -8,6 +8,8 @@
 
         public string DeliveryAddress { get; set; }
 
+        public string PaymentMethod { get; set; }
+
         public int ShopId { get; set; }
 
     }
