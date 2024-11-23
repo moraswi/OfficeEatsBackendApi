@@ -1,6 +1,6 @@
-@officeeatsbackendapi_HostAddress = http://localhost:5164
+@OfficeEatsBackendApi_HostAddress = http://localhost:5276
 
-GET {{officeeatsbackendapi_HostAddress}}/weatherforecast/
+GET {{OfficeEatsBackendApi_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
