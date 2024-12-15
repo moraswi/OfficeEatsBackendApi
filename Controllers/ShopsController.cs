@@ -22,7 +22,7 @@ namespace officeeatsbackendapi.Controllers
         }
         #endregion Public Constructors
 
-        [HttpPost("shop")]
+        [HttpPost("store")]
         public async Task<IActionResult> AddShop([FromBody] ShopsDto shops)
         {
             try
@@ -36,7 +36,7 @@ namespace officeeatsbackendapi.Controllers
             }
         }
 
-        [HttpGet("shop/{officeid}")]
+        [HttpGet("stores/{officeid}")]
         public async Task<IActionResult> GetShopByOfficeId([FromRoute] int officeid)
         {
             try
