@@ -27,10 +27,22 @@ namespace officeeatsbackendapi.Repository
             return shops;
         }
 
+        public async Task<StoreImages> AddShopImageAsync(StoreImages image)
+        {
+            await _context.StoreImages.AddAsync(image);
+            await _context.SaveChangesAsync();
+            return image;
+        }
+
         public async Task<IEnumerable<Shops>> GetShopByOfficeIdAsync(int officeId)
         {
             var shop = await _context.Shops.Where(x => x.OfficeId == officeId).ToListAsync();
             return shop;
+        }
+
+        public async Task<StoreImages> GetShopImageAsync(int storeId)
+        {
+            return await _context.StoreImages.FirstOrDefaultAsync(x => x.StoreId == storeId);
         }
     }
 }
