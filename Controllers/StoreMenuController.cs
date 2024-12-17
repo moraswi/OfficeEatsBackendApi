@@ -36,18 +36,46 @@ namespace officeeatsbackendapi.Controllers
             }
         }
 
-        [HttpGet("store-menu/category/{categoryid}")]
-        public async Task<IActionResult> GetStoreMenuByCategoryId([FromRoute] int categoryid)
+        [HttpPost("store-menu/images")]
+        public async Task<IActionResult> AddStoreMenuImages([FromBody] StoreMenuImages image)
         {
             //try
             //{
-                var results = await _storeMenuService.GetStoreMenueByCategoryIdAsync(categoryid);
+                var results = await _storeMenuService.AddStoreMenuImagesAsync(image);
                 return StatusCode(200, results);
             //}
             //catch (Exception ex)
             //{
             //    return StatusCode(500, new { message = "Internal server error" });
             //}
+        }
+
+        [HttpGet("store-menu/images/{storemenuid}")]
+        public async Task<IActionResult> GetStoreMenuImages([FromRoute] int storemenuid)
+        {
+            try
+            {
+                var results = await _storeMenuService.GetStoreMenuImagesAsync(storemenuid);
+                return StatusCode(200, results);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error" });
+            }
+        }
+
+        [HttpGet("store-menu/category/{categoryid}")]
+        public async Task<IActionResult> GetStoreMenuByCategoryId([FromRoute] int categoryid)
+        {
+            try
+            {
+                var results = await _storeMenuService.GetStoreMenueByCategoryIdAsync(categoryid);
+                return StatusCode(200, results);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error" });
+            }
         }
 
         [HttpGet("store-menu/top-meals/{storeid}")]

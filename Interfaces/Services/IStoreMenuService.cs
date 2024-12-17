@@ -7,6 +7,10 @@ namespace officeeatsbackendapi.Interfaces.Services
     {
         Task<StoreMenu> AddStoreMenueAsync(StoreMenuDto storeMenu);
 
+        Task<StoreMenuImages> AddStoreMenuImagesAsync(StoreMenuImages image);
+
+        Task<StoreMenuImages> GetStoreMenuImagesAsync(int storeMenuId);
+
         Task<IEnumerable<StoreMenu>> GetStoreMenueByCategoryIdAsync(int categoryId);
 
         Task<IEnumerable<StoreMenu>> GetStoreMenueByStoreIdAsync(int storeId);

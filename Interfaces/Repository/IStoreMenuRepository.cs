@@ -6,6 +6,10 @@ namespace officeeatsbackendapi.Interfaces.Repository
     {
         Task<StoreMenu> AddStoreMenueAsync(StoreMenu storeMenu);
 
+        Task<StoreMenuImages> AddStoreMenuImagesAsync(StoreMenuImages image);
+
+        Task<StoreMenuImages> GetStoreMenuImagesAsync(int storeMenuId);
+
         Task<IEnumerable<StoreMenu>> GetStoreMenueByCategoryIdAsync(int categoryId);
 
         Task<IEnumerable<StoreMenu>> GetStoreMenueByStoreIdAsync(int storeId);

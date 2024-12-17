@@ -29,6 +29,11 @@ namespace officeeatsbackendapi.Services
             return results;
         }
 
+        public async Task<StoreMenuImages> AddStoreMenuImagesAsync(StoreMenuImages image)
+        {
+            return await _storeMenuRepository.AddStoreMenuImagesAsync(image);
+        }
+
         public async Task<bool> DeleteStoreMenueAsync(int id)
         {
             await _storeMenuRepository.DeleteStoreMenueAsync(id);
@@ -45,6 +50,11 @@ namespace officeeatsbackendapi.Services
         {
             var tomMeal = await _storeMenuRepository.GetStoreMenueByStoreIdAsync(storeId);
             return tomMeal;
+        }
+
+        public async Task<StoreMenuImages> GetStoreMenuImagesAsync(int storeMenuId)
+        {
+            return await _storeMenuRepository.GetStoreMenuImagesAsync(storeMenuId);
         }
 
         public async Task<IEnumerable<StoreMenu>> GetStorePromotionMenueByStoreIdAsync(int storeId)
