@@ -6,8 +6,6 @@
 
         public int UserId { get; set; }
 
-        //public List<OrderItem> Items { get; set; }
-
         public decimal TotalAmount { get; set; }
 
         public string DeliveryAddress { get; set; }

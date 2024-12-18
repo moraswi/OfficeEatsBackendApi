@@ -10,6 +10,9 @@ namespace officeeatsbackendapi.Interfaces.Services
 
         Task<IEnumerable<Order>> GetAllOrdersByStoreIdAsync(int storeId);
 
+        Task<IEnumerable<OrderItem>> GetOrderItemsByOrderIdAsync(int orderId);
+
+
         Task<IEnumerable<Order>> GetOrdersByUserIdAsync(int userId);
 
         Task<ServiceResponse<Order>> UpdateOrderAsync(OrderDto orderDto);

@@ -41,6 +41,13 @@ namespace officeeatsbackendapi.Controllers
             return StatusCode(200, response);
         }
 
+        [HttpGet("order-items/{orderid}")]
+        public async Task<IActionResult> GetOrderItemsByOrderIdAsync([FromRoute] int orderid)
+        {
+            var response = await _orderServices.GetOrderItemsByOrderIdAsync(orderid);
+            return StatusCode(200, response);
+        }
+
         [HttpGet("order/user/{userid}")]
         public async Task<IActionResult> GetOrdersByUserId([FromRoute] int userid)
         {
