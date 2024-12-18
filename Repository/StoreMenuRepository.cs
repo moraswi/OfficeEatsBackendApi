@@ -45,7 +45,7 @@ namespace officeeatsbackendapi.Repository
 
         public async Task<IEnumerable<StoreMenu>> GetStoreMenueByCategoryIdAsync(int categoryId)
         {
-            var results = await _context.StoreMenu.Where(x => x.CategoryId == categoryId).ToListAsync();
+            var results = await _context.StoreMenu.Include(menu => menu.StoreMenuImages).Where(x => x.CategoryId == categoryId).ToListAsync();
             return results;
         }
 

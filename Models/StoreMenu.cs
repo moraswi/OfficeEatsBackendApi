@@ -18,5 +18,7 @@
 
         public string Description { get; set; }
 
+        public StoreMenuImages StoreMenuImages { get; set; }
+
     }
 }
