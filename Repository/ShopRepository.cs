@@ -36,7 +36,8 @@ namespace officeeatsbackendapi.Repository
 
         public async Task<IEnumerable<Shops>> GetShopByOfficeIdAsync(int officeId)
         {
-            var shop = await _context.Shops.Where(x => x.OfficeId == officeId).ToListAsync();
+            //var shop = await _context.Shops.Include(x => x.StoreImages) .Where(x => x.OfficeId == officeId).ToListAsync();
+            var shop = await _context.Shops.Include(x => x.StoreImages).Where(x => x.OfficeId == officeId).ToListAsync();
             return shop;
         }
 

@@ -39,15 +39,15 @@ namespace officeeatsbackendapi.Controllers
         [HttpPost("store/image")]
         public async Task<IActionResult> AddShopImageAsync([FromBody] StoreImages image)
         {
-            //try
-            //{
+            try
+            {
                 var results = await _shopServices.AddShopImageAsync(image);
                 return StatusCode(200, results);
-            //}
-            //catch (Exception ex)
-            //{
-            //    return StatusCode(500, new { message = "Internal server error" });
-            //}
+        }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error" });
+            }
         }
 
         [HttpGet("store/image/{storeId}")]
@@ -67,15 +67,15 @@ namespace officeeatsbackendapi.Controllers
         [HttpGet("stores/{officeid}")]
         public async Task<IActionResult> GetShopByOfficeId([FromRoute] int officeid)
         {
-            try
-            {
+            //try
+            //{
                 var results = await _shopServices.GetShopByOfficeIdAsync(officeid);
                 return StatusCode(200, results);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = "Internal server error" });
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    return StatusCode(500, new { message = "Internal server error" });
+            //}
         }
     }
 }

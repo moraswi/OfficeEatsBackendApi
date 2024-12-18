@@ -8,5 +8,7 @@
 
         public int OfficeId { get; set; }
 
+        public StoreImages StoreImages { get; set; }
+
     }
 }

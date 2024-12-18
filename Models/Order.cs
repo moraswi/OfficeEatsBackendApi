@@ -6,7 +6,7 @@
 
         public int UserId { get; set; }
 
-        public List<OrderItem> Items { get; set; }
+        //public List<OrderItem> Items { get; set; }
 
         public decimal TotalAmount { get; set; }
 
@@ -19,5 +19,7 @@
         public DateTime OrderDate { get; set; } = DateTime.Now;
 
         public int ShopId { get; set; }
+
+        public List<OrderItem> Items { get; set; } = new List<OrderItem>();
     }
 }

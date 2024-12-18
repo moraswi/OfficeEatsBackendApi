@@ -36,9 +36,13 @@ namespace officeeatsbackendapi.Repository
 
         public async Task<IEnumerable<Order>> GetOrdersByUserIdAsync(int userId)
         {
-            var results = await _context.Order.Where(x => x.UserId == userId).ToListAsync();
+            var results = await _context.Order
+                .Include(o => o.Items)
+                .Where(x => x.UserId == userId)
+                .ToListAsync();
             return results;
         }
+
 
         public async Task<Order> UpdateOrderAsync(Order order)
         {
