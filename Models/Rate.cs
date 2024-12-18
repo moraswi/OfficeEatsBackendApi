@@ -8,7 +8,10 @@
 
         public string Message { get; set; }
 
-        public double Rating { get; set; }
+        public int Rating { get; set; }
+
+        public string Improve { get; set; }
+        
 
     }
 }
