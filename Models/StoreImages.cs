@@ -6,7 +6,7 @@
 
         public string Base64 { get; set; }
 
-        public int StoreId { get; set; }
+        public int StoresId { get; set; }
         
     }
 }

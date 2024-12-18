@@ -1,6 +1,6 @@
 ﻿namespace officeeatsbackendapi.Models
 {
-    public class Shops
+    public class Stores
     {
         public int Id { get; set; }
 
@@ -9,6 +9,7 @@
         public int OfficeId { get; set; }
 
         public StoreImages StoreImages { get; set; }
+
 
     }
 }

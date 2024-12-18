@@ -13,7 +13,7 @@ namespace officeeatsbackendapi.Data
 
         public DbSet<Offices> Offices { get; set; }
 
-        public DbSet<Shops> Shops { get; set; }
+        public DbSet<Stores> Stores { get; set; }
 
         public DbSet<Addresses> Addresses { get; set; }
 

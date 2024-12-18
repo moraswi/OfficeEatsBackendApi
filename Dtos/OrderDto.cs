@@ -12,5 +12,9 @@
 
         public int ShopId { get; set; }
 
+        public string OrderCode { get; set; }
+
+        public string StoreName { get; set; }
+
     }
 }

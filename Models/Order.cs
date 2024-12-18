@@ -16,9 +16,13 @@
 
         public string OrderStatus { get; set; } = "Pending";
 
-        public DateTime OrderDate { get; set; } = DateTime.Now;
+        public DateTime OrderDate { get; set; }
 
         public int ShopId { get; set; }
+
+        public string OrderCode { get; set; }
+
+        public string StoreName { get; set; }
 
         public List<OrderItem> Items { get; set; } = new List<OrderItem>();
     }

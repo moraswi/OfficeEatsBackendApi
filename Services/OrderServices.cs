@@ -26,6 +26,9 @@ namespace officeeatsbackendapi.Services
         {
             var order = _mapper.Map<Order>(orderDto);
 
+            order.OrderDate = DateTime.Now;
+            order.OrderCode = GenerateOrderCode();
+
             var savedOrder = await _orderRepository.AddOrderAsync(order);
 
             return new ServiceResponse<Order>
@@ -53,6 +56,7 @@ namespace officeeatsbackendapi.Services
         public async Task<ServiceResponse<Order>> UpdateOrderAsync(OrderDto orderDto)
         {
             var order = _mapper.Map<Order>(orderDto);
+     
 
             var updatedOrder = await _orderRepository.UpdateOrderAsync(order);
 
@@ -62,6 +66,15 @@ namespace officeeatsbackendapi.Services
                 Success = true,
                 Message = "Order updated successfully."
             };
+        }
+
+        private string GenerateOrderCode()
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var random = new Random();
+            var code = new string(Enumerable.Repeat(chars, 11)
+                                            .Select(s => s[random.Next(s.Length)]).ToArray());
+            return $"#{code}";
         }
 
 

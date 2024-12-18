@@ -20,9 +20,9 @@ namespace officeeatsbackendapi.Repository
         #endregion Public Constructors
 
 
-        public async Task<Shops> AddShopAsync(Shops shops)
+        public async Task<Stores> AddShopAsync(Stores shops)
         {
-            await _context.Shops.AddAsync(shops);
+            await _context.Stores.AddAsync(shops);
             await _context.SaveChangesAsync();
             return shops;
         }
@@ -34,16 +34,16 @@ namespace officeeatsbackendapi.Repository
             return image;
         }
 
-        public async Task<IEnumerable<Shops>> GetShopByOfficeIdAsync(int officeId)
+        public async Task<IEnumerable<Stores>> GetShopByOfficeIdAsync(int officeId)
         {
-            //var shop = await _context.Shops.Include(x => x.StoreImages) .Where(x => x.OfficeId == officeId).ToListAsync();
-            var shop = await _context.Shops.Include(x => x.StoreImages).Where(x => x.OfficeId == officeId).ToListAsync();
+            var shop = await _context.Stores.Include(x => x.StoreImages) .Where(x => x.OfficeId == officeId).ToListAsync();
+            //var shop = await _context.Stores.Where(x => x.OfficeId == officeId).ToListAsync();
             return shop;
         }
 
         public async Task<StoreImages> GetShopImageAsync(int storeId)
         {
-            return await _context.StoreImages.FirstOrDefaultAsync(x => x.StoreId == storeId);
+            return await _context.StoreImages.FirstOrDefaultAsync(x => x.StoresId == storeId);
         }
     }
 }

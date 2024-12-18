@@ -4,13 +4,13 @@ namespace officeeatsbackendapi.Interfaces.Repository
 {
     public interface IShopRepository
     {
-        Task<Shops> AddShopAsync(Shops shops);
+        Task<Stores> AddShopAsync(Stores shops);
 
         Task<StoreImages> AddShopImageAsync(StoreImages image);
 
         Task<StoreImages> GetShopImageAsync(int storeId);
 
-        Task<IEnumerable<Shops>> GetShopByOfficeIdAsync(int officeId);
+        Task<IEnumerable<Stores>> GetShopByOfficeIdAsync(int officeId);
 
     }
 }

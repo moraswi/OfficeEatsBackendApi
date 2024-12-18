@@ -22,9 +22,9 @@ namespace officeeatsbackendapi.Services
         }
         #endregion Public Constructors
 
-        public async Task<Shops> AddShopAsync(ShopsDto shops)
+        public async Task<Stores> AddShopAsync(ShopsDto shops)
         {
-            var shopEntity = _mapper.Map<Shops>(shops);
+            var shopEntity = _mapper.Map<Stores>(shops);
             var results = await _shopRepository.AddShopAsync(shopEntity);
             return results;
         }
@@ -34,7 +34,7 @@ namespace officeeatsbackendapi.Services
             return await _shopRepository.AddShopImageAsync(image);
         }
 
-        public async Task<IEnumerable<Shops>> GetShopByOfficeIdAsync(int officeId)
+        public async Task<IEnumerable<Stores>> GetShopByOfficeIdAsync(int officeId)
         {
             var shop = await _shopRepository.GetShopByOfficeIdAsync(officeId);
             return shop;

@@ -20,8 +20,8 @@ namespace officeeatsbackendapi.Helpers
             CreateMap<Offices, OfficesDto>();
             CreateMap<OfficesDto, Offices>();
 
-            CreateMap<Shops, ShopsDto>();
-            CreateMap<ShopsDto, Shops>();
+            CreateMap<Stores, ShopsDto>();
+            CreateMap<ShopsDto, Stores>();
 
             CreateMap<AddressesDto, Addresses>();
             CreateMap<Addresses, AddressesDto>();
