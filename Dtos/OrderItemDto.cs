@@ -9,5 +9,8 @@
 
         public double ItemPrice { get; set; }
 
+        public string FoodName { get; set; }
+
+
     }
 }

@@ -12,6 +12,9 @@
 
         public int OrderId { get; set; }
 
+        public string FoodName { get; set; }
+        
+
         //public Order Order { get; set; }
     }
 }
