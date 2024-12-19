@@ -39,6 +39,12 @@ namespace officeeatsbackendapi.Repository
             return results;
         }
 
+        public async Task<Order> GetOrderByIdAsync(int orderId)
+        {
+            var results = await _context.Order.Include(o => o.Items).FirstOrDefaultAsync(o => o.Id == orderId);
+            return results;
+        }
+
         public async Task<IEnumerable<Order>> GetOrdersByUserIdAsync(int userId)
         {
             var results = await _context.Order

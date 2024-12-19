@@ -81,5 +81,10 @@ namespace officeeatsbackendapi.Services
         {
            return await _orderRepository.GetOrderItemsByOrderIdAsync(orderId);
         }
+
+        public async Task<Order> GetOrderByIdAsync(int orderId)
+        {
+            return await _orderRepository.GetOrderByIdAsync(orderId);
+        }
     }
 }

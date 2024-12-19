@@ -8,6 +8,8 @@ namespace officeeatsbackendapi.Interfaces.Repository
 
         Task<IEnumerable<Order>> GetAllOrdersByStoreIdAsync(int storeId);
 
+        Task<Order> GetOrderByIdAsync(int orderId);
+
         Task<IEnumerable<Order>> GetOrdersByUserIdAsync(int userId);
 
         Task<IEnumerable<OrderItem>> GetOrderItemsByOrderIdAsync(int orderId);

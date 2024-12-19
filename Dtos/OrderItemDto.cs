@@ -7,7 +7,7 @@
 
         public int Quantity { get; set; }
 
-        public int ItemPrice { get; set; }
+        public double ItemPrice { get; set; }
 
     }
 }
