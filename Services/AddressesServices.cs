@@ -21,9 +21,9 @@ namespace officeeatsbackendapi.Services
         }
         #endregion Public Constructors
 
-        public async Task<IEnumerable<Addresses>> GetAddAddressByUserIdAsync(int userId)
+        public async Task<Addresses> GetAddressByUserIdAsync(int userId)
         {
-            var addresses = await _addressesRepository.GetAddAddressByUserIdAsync(userId);
+            var addresses = await _addressesRepository.GetAddressByUserIdAsync(userId);
             return addresses;
         }
 

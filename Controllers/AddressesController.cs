@@ -41,7 +41,7 @@ namespace officeeatsbackendapi.Controllers
         {
             try
             {
-                var results = await _addressesServices.GetAddAddressByUserIdAsync(userid);
+                var results = await _addressesServices.GetAddressByUserIdAsync(userid);
                 return StatusCode(200, results);
             }
             catch (Exception ex)

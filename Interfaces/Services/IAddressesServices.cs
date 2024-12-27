@@ -7,7 +7,7 @@ namespace officeeatsbackendapi.Interfaces.Services
     {
         Task<Addresses> AddAddress(AddressesDto address);
 
-        Task<IEnumerable<Addresses>> GetAddAddressByUserIdAsync(int userId);
+        Task<Addresses> GetAddressByUserIdAsync(int userId);
 
         Task<Addresses> UpdateAddressesAsync(Addresses addresses);
 

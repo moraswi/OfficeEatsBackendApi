@@ -37,9 +37,9 @@ namespace officeeatsbackendapi.Repository
             return true;
         }
 
-        public async Task<IEnumerable<Addresses>> GetAddAddressByUserIdAsync(int userId)
+        public async Task<Addresses> GetAddressByUserIdAsync(int userId)
         {
-            var addresses = await _context.Addresses.Where(x => x.UserId == userId).ToListAsync();
+            var addresses = await _context.Addresses.FirstOrDefaultAsync(x => x.UserId == userId);
             return addresses;
         }
 
