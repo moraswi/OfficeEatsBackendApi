@@ -5,6 +5,7 @@ using officeeatsbackendapi.Dtos;
 using officeeatsbackendapi.Interfaces.Services;
 using officeeatsbackendapi.Models;
 using officeeatsbackendapi.Services;
+using OfficeEatsBackendApi.Dtos;
 
 namespace officeeatsbackendapi.Controllers
 {
@@ -64,17 +65,17 @@ namespace officeeatsbackendapi.Controllers
 
 
         [HttpPut("order")]
-        public async Task<IActionResult> UpdateOrder([FromBody] OrderDto orderDto)
+        public async Task<IActionResult> UpdateOrder([FromBody] UpdateOrderDto updateOrderDto)
         {
-            try
-            {
-                var results = await _orderServices.UpdateOrderAsync(orderDto);
+            //try
+            //{
+                var results = await _orderServices.UpdateOrderAsync(updateOrderDto);
                 return StatusCode(200, results);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = "Internal server error" });
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    return StatusCode(500, new { message = "Internal server error" });
+            //}
         }
     }
 }

@@ -4,6 +4,7 @@ using officeeatsbackendapi.Dtos;
 using officeeatsbackendapi.Interfaces.Repository;
 using officeeatsbackendapi.Interfaces.Services;
 using officeeatsbackendapi.Models;
+using OfficeEatsBackendApi.Dtos;
 
 namespace officeeatsbackendapi.Services
 {
@@ -53,9 +54,9 @@ namespace officeeatsbackendapi.Services
         }
 
         //not working well
-        public async Task<ServiceResponse<Order>> UpdateOrderAsync(OrderDto orderDto)
+        public async Task<ServiceResponse<Order>> UpdateOrderAsync(UpdateOrderDto updateOrderDto)
         {
-            var order = _mapper.Map<Order>(orderDto);
+            var order = _mapper.Map<Order>(updateOrderDto);
      
 
             var updatedOrder = await _orderRepository.UpdateOrderAsync(order);
@@ -72,7 +73,7 @@ namespace officeeatsbackendapi.Services
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             var random = new Random();
-            var code = new string(Enumerable.Repeat(chars, 11)
+            var code = new string(Enumerable.Repeat(chars, 5)
                                             .Select(s => s[random.Next(s.Length)]).ToArray());
             return $"#{code}";
         }

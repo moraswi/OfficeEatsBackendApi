@@ -1,6 +1,7 @@
 ﻿using officeeatsbackendapi.Class;
 using officeeatsbackendapi.Dtos;
 using officeeatsbackendapi.Models;
+using OfficeEatsBackendApi.Dtos;
 
 namespace officeeatsbackendapi.Interfaces.Services
 {
@@ -16,6 +17,6 @@ namespace officeeatsbackendapi.Interfaces.Services
 
         Task<IEnumerable<Order>> GetOrdersByUserIdAsync(int userId);
 
-        Task<ServiceResponse<Order>> UpdateOrderAsync(OrderDto orderDto);
+        Task<ServiceResponse<Order>> UpdateOrderAsync(UpdateOrderDto updateOrderDto);
     }
 }

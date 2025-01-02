@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using officeeatsbackendapi.Dtos;
 using officeeatsbackendapi.Models;
+using OfficeEatsBackendApi.Dtos;
 
 
 namespace officeeatsbackendapi.Helpers
@@ -34,6 +35,8 @@ namespace officeeatsbackendapi.Helpers
 
             CreateMap<RateDto, Rate>();
             CreateMap<Rate, RateDto>();
+
+            CreateMap<UpdateOrderDto, Order>();
 
             CreateMap<OrderItemDto, OrderItem>()
                   .ForMember(dest => dest.TotalPrice, opt => opt.MapFrom(src => src.Quantity * src.ItemPrice));
