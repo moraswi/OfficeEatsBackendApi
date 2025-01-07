@@ -20,6 +20,10 @@ namespace officeeatsbackendapi.Interfaces.Repository
 
         Task<Users> GetUserByPhoneNumberAsync(string phoneNumber);
 
+        Task<StoreAdmin> GetStoreAdminByUserIdAsync(int userId);
+
+        Task<DeliveryPartner> GetDeliveryPartnerByUserIdAsync(int userId);
+
         Task<bool> ChangePasswordAsync(int userId, string newPassword);
 
         Task<Users> UpdateUserAsync(Users user);

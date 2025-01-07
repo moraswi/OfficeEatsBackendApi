@@ -14,7 +14,8 @@ namespace officeeatsbackendapi.Helpers
             CreateMap<UsersDto, Users>();
 
             CreateMap<RegisterUserDto, Users>();
-
+            CreateMap<Users, LoginResponseDto>();
+            
             CreateMap<Users, LogInDto>();
             CreateMap<ChangePasswordDto, Users>();
 

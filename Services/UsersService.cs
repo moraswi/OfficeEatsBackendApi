@@ -4,6 +4,7 @@ using officeeatsbackendapi.Dtos;
 using officeeatsbackendapi.Interfaces.Repository;
 using officeeatsbackendapi.Interfaces.Services;
 using officeeatsbackendapi.Models;
+using OfficeEatsBackendApi.Dtos;
 using OfficeEatsBackendApi.Models;
 
 namespace officeeatsbackendapi.Services
@@ -77,7 +78,7 @@ namespace officeeatsbackendapi.Services
             return userDto;
         }
 
-        public async Task<ServiceResponse<UsersDto>> LogInAsync(LogInDto logIn)
+        public async Task<ServiceResponse<UsersDto>> LogInAsyncOld(LogInDto logIn)
         {
             var response = new ServiceResponse<UsersDto>();
             var result = await _usersRepository.GetUserByEmailAsync(logIn.Email);
@@ -96,6 +97,57 @@ namespace officeeatsbackendapi.Services
             return response;
 
         }
+
+        public async Task<ServiceResponse<LoginResponseDto>> LogInAsync(LogInDto logIn)
+        {
+            var response = new ServiceResponse<LoginResponseDto>();
+
+            // Fetch user by email
+            var user = await _usersRepository.GetUserByEmailAsync(logIn.Email);
+
+            // Validate user and password
+            if (user == null || !VerifyPassword(logIn.Password, user.Password))
+            {
+                response.Success = false;
+                response.Message = "Invalid username or password.";
+                return response;
+            }
+
+            // Map user to base response
+            var loginResponse = _mapper.Map<LoginResponseDto>(user);
+
+            // Add role-specific information
+            switch (user.Role.ToLower())
+            {
+                case "admin":
+                    var storeAdmin = await _usersRepository.GetStoreAdminByUserIdAsync(user.Id);
+                    if (storeAdmin != null)
+                    {
+                        loginResponse.StoreId = storeAdmin.StoreId;
+                    }
+                    break;
+
+                case "deliverypartner":
+                    var deliveryPartner = await _usersRepository.GetDeliveryPartnerByUserIdAsync(user.Id);
+                    if (deliveryPartner != null)
+                    {
+                        loginResponse.OfficeId = deliveryPartner.OfficeId;
+                    }
+                    break;
+
+                // No additional fields for "client" or other roles
+                case "client":
+                default:
+                    break;
+            }
+
+            response.Data = loginResponse;
+            response.Success = true;
+            response.Message = "Login successful.";
+            return response;
+        }
+
+
 
         public async Task<ServiceResponse<UsersDto>> RegisterUserAsync(RegisterUserDto registerUser)
         {

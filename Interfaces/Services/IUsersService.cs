@@ -1,6 +1,7 @@
 ﻿using officeeatsbackendapi.Class;
 using officeeatsbackendapi.Dtos;
 using officeeatsbackendapi.Models;
+using OfficeEatsBackendApi.Dtos;
 using OfficeEatsBackendApi.Models;
 
 namespace officeeatsbackendapi.Interfaces.Services
@@ -21,7 +22,7 @@ namespace officeeatsbackendapi.Interfaces.Services
 
         Task<UsersDto> GetUserByPhoneNumberAsync(string phoneNumber);
 
-        Task<ServiceResponse<UsersDto>> LogInAsync(LogInDto logIn);
+        Task<ServiceResponse<LoginResponseDto>> LogInAsync(LogInDto logIn);
 
         Task<UsersDto> UpdateUserAsync(UsersDto user);
 

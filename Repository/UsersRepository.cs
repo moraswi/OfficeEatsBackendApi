@@ -112,5 +112,15 @@ namespace officeeatsbackendapi.Repository
 
             return deliveryPartner;
         }
+
+        public async Task<StoreAdmin> GetStoreAdminByUserIdAsync(int userId)
+        {
+            return await _context.StoreAdmin.FirstOrDefaultAsync(sa => sa.UserId == userId);
+        }
+
+        public async Task<DeliveryPartner> GetDeliveryPartnerByUserIdAsync(int userId)
+        {
+            return await _context.DeliveryPartner.FirstOrDefaultAsync(dp => dp.UserId == userId);
+        }
     }
 }
