@@ -14,8 +14,7 @@
 
         public int? OfficeId { get; set; }
 
-
-        //public string OrderCode { get; set; }
+        public int? DeliveryPartnerId { get; set; }
 
         public string? StoreName { get; set; }
 

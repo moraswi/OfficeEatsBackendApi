@@ -2,6 +2,7 @@
 using officeeatsbackendapi.Data;
 using officeeatsbackendapi.Interfaces.Repository;
 using officeeatsbackendapi.Models;
+using OfficeEatsBackendApi.Models;
 
 namespace officeeatsbackendapi.Repository
 {
@@ -69,9 +70,17 @@ namespace officeeatsbackendapi.Repository
         {
             return await _context.Order
                 .Where(x => x.OfficeId == officeId &&
-                            (x.OrderStatus == "Pending" ||
-                             x.OrderStatus == "Declined" ||
-                             x.OrderStatus == "Completed"))
+                            (x.OrderStatus != "Pending" &&
+                             x.OrderStatus != "Declined" &&
+                             x.OrderStatus != "Completed"))
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Order>> GetDeliveryPatnerOrderAsync(int deliveryPartnerId)
+        {
+             return await _context.Order
+                .Where(x => x.DeliveryPartnerId == deliveryPartnerId &&
+                            x.OrderStatus != "Completed")
                 .ToListAsync();
         }
     }

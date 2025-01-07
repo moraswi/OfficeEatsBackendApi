@@ -92,5 +92,10 @@ namespace officeeatsbackendapi.Services
         {
             return await _orderRepository.GetDeliveryPatnerOfficePendingOrderAsync(officeId);
         }
+
+        public async Task<IEnumerable<Order>> GetDeliveryPatnerOrderAsync(int deliveryPartnerId)
+        {
+            return await _orderRepository.GetDeliveryPatnerOrderAsync(deliveryPartnerId);
+        }
     }
 }

@@ -63,13 +63,19 @@ namespace officeeatsbackendapi.Controllers
             return StatusCode(200, response);
         }
 
-        [HttpGet("order/delivery-partner/{officeid}")]
+        [HttpGet("all-order/delivery-partner/{officeid}")]
         public async Task<IActionResult> GetDeliveryPatnerOfficePendingOrder([FromRoute] int officeid)
         {
             var response = await _orderServices.GetDeliveryPatnerOfficePendingOrderAsync(officeid);
             return StatusCode(200, response);
         }
 
+        [HttpGet("order/delivery-partner/{deliveryPartnerId}")]
+        public async Task<IActionResult> GetDeliveryPatnerOrderAsync([FromRoute] int deliveryPartnerId)
+        {
+            var response = await _orderServices.GetDeliveryPatnerOrderAsync(deliveryPartnerId);
+            return StatusCode(200, response);
+        }
 
         [HttpPut("order")]
         public async Task<IActionResult> UpdateOrder([FromBody] UpdateOrderDto updateOrderDto)
