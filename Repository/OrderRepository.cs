@@ -64,5 +64,15 @@ namespace officeeatsbackendapi.Repository
             await _context.SaveChangesAsync();
             return order;
         }
+
+        public async Task<IEnumerable<Order>> GetDeliveryPatnerOfficePendingOrderAsync(int officeId)
+        {
+            return await _context.Order
+                .Where(x => x.OfficeId == officeId &&
+                            (x.OrderStatus == "Pending" ||
+                             x.OrderStatus == "Declined" ||
+                             x.OrderStatus == "Completed"))
+                .ToListAsync();
+        }
     }
 }

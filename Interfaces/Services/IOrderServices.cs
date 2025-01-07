@@ -15,6 +15,9 @@ namespace officeeatsbackendapi.Interfaces.Services
 
         Task<Order> GetOrderByIdAsync(int orderId);
 
+        Task<IEnumerable<Order>> GetDeliveryPatnerOfficePendingOrderAsync(int officeId);
+
+
         Task<IEnumerable<Order>> GetOrdersByUserIdAsync(int userId);
 
         Task<ServiceResponse<Order>> UpdateOrderAsync(UpdateOrderDto updateOrderDto);
