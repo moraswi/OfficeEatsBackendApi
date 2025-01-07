@@ -1,11 +1,16 @@
 ﻿using officeeatsbackendapi.Dtos;
 using officeeatsbackendapi.Models;
+using OfficeEatsBackendApi.Models;
 
 namespace officeeatsbackendapi.Interfaces.Repository
 {
     public interface IUsersRepository
     {
         Task<Users> RegisterUserAsync(Users users);
+
+        Task<StoreAdmin> RegisterStoreAdminAsync(StoreAdmin storeAdmin);
+
+        Task<DeliveryPartner> RegisterDeliveryPartnerAsync(DeliveryPartner deliveryPartner);
 
         Task<IEnumerable<Users>> GetAllUsersAsync();
 

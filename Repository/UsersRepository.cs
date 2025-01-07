@@ -2,6 +2,7 @@
 using officeeatsbackendapi.Data;
 using officeeatsbackendapi.Interfaces.Repository;
 using officeeatsbackendapi.Models;
+using OfficeEatsBackendApi.Models;
 
 namespace officeeatsbackendapi.Repository
 {
@@ -94,6 +95,22 @@ namespace officeeatsbackendapi.Repository
         {
           
             return BCrypt.Net.BCrypt.HashPassword(password);
+        }
+
+        public async Task<StoreAdmin> RegisterStoreAdminAsync(StoreAdmin storeAdmin)
+        {
+            await _context.StoreAdmin.AddAsync(storeAdmin);
+            await _context.SaveChangesAsync();
+
+            return storeAdmin;
+        }
+
+        public async Task<DeliveryPartner> RegisterDeliveryPartnerAsync(DeliveryPartner deliveryPartner)
+        {
+            await _context.DeliveryPartner.AddAsync(deliveryPartner);
+            await _context.SaveChangesAsync();
+
+            return deliveryPartner;
         }
     }
 }

@@ -1,12 +1,17 @@
 ﻿using officeeatsbackendapi.Class;
 using officeeatsbackendapi.Dtos;
 using officeeatsbackendapi.Models;
+using OfficeEatsBackendApi.Models;
 
 namespace officeeatsbackendapi.Interfaces.Services
 {
     public interface IUsersService
     {
         Task<ServiceResponse<UsersDto>> RegisterUserAsync(RegisterUserDto registerUser);
+
+        Task<StoreAdmin> RegisterStoreAdminAsync(StoreAdmin storeAdmin);
+
+        Task<DeliveryPartner> RegisterDeliveryPartnerAsync(DeliveryPartner deliveryPartner);
 
         Task<IEnumerable<UsersDto>> GetAllUsersAsync();
 

@@ -4,6 +4,7 @@ using officeeatsbackendapi.Dtos;
 using officeeatsbackendapi.Interfaces.Repository;
 using officeeatsbackendapi.Interfaces.Services;
 using officeeatsbackendapi.Models;
+using OfficeEatsBackendApi.Models;
 
 namespace officeeatsbackendapi.Services
 {
@@ -117,13 +118,43 @@ namespace officeeatsbackendapi.Services
                 return response;
             }
 
-            var results = _mapper.Map<Users>(registerUser);
+            var newUser = _mapper.Map<Users>(registerUser);
 
-            results.Password = BCrypt.Net.BCrypt.HashPassword(registerUser.Password);
+            newUser.Password = BCrypt.Net.BCrypt.HashPassword(registerUser.Password);
 
-            await _usersRepository.RegisterUserAsync(results);
+            await _usersRepository.RegisterUserAsync(newUser);
 
-            var userDto = _mapper.Map<UsersDto>(results);
+            switch (registerUser.Role.ToLower())
+            {
+                case "admin":
+                    var storeAdmin = new StoreAdmin
+                    {
+                        UserId = newUser.Id,
+                        StoreId = (int)registerUser.StoreId // Assuming StoreId is passed in RegisterUserDto
+                    };
+                    await _usersRepository.RegisterStoreAdminAsync(storeAdmin);
+                    break;
+
+                case "deliverypartner":
+                    var deliveryPartner = new DeliveryPartner
+                    {
+                        UserId = newUser.Id,
+                        OfficeId = (int)registerUser.OfficeId // Assuming OfficeId is passed in RegisterUserDto
+                    };
+                    await _usersRepository.RegisterDeliveryPartnerAsync(deliveryPartner);
+                    break;
+
+                case "client":
+                    // No additional role registration needed for clients
+                    break;
+
+                default:
+                    response.Success = false;
+                    response.Message = "Invalid role specified.";
+                    return response;
+            }
+
+            var userDto = _mapper.Map<UsersDto>(newUser);
 
             response.Data = userDto;
             response.Success = true;
@@ -131,6 +162,16 @@ namespace officeeatsbackendapi.Services
 
             return response;
 
+        }
+
+        public async Task<StoreAdmin> RegisterStoreAdminAsync(StoreAdmin storeAdmin)
+        {
+            return await _usersRepository.RegisterStoreAdminAsync(storeAdmin);
+        }
+
+        public async Task<DeliveryPartner> RegisterDeliveryPartnerAsync(DeliveryPartner deliveryPartner)
+        {
+            return await _usersRepository.RegisterDeliveryPartnerAsync(deliveryPartner);
         }
 
         public async Task<UsersDto> UpdateUserAsync(UsersDto user)
@@ -145,5 +186,7 @@ namespace officeeatsbackendapi.Services
         {
             return BCrypt.Net.BCrypt.Verify(currentPassword, storedPassword);
         }
+
+     
     }
 }

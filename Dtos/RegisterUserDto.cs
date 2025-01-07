@@ -12,7 +12,11 @@
 
         public string Password { get; set; }
 
-        public string Role { get; set; }
+        public string Role { get; set; } // "client", "storeadmin", "deliverypartner"
+
+        public int? StoreId { get; set; } // Required for admin
+
+        public int? OfficeId { get; set; } // Required for deliverypartner
 
     }
 }
