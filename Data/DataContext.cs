@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using officeeatsbackendapi.Models;
+using OfficeEatsBackendApi.Models;
 
 namespace officeeatsbackendapi.Data
 {
@@ -31,6 +32,9 @@ namespace officeeatsbackendapi.Data
 
         public DbSet<StoreImages> StoreImages { get; set; }
 
-        
+        public DbSet<DeliveryPartner> DeliveryPartner { get; set; }
+
+        public DbSet<StoreAdmin> StoreAdmin { get; set; }
+
     }
 }

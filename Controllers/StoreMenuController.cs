@@ -78,7 +78,7 @@ namespace officeeatsbackendapi.Controllers
             }
         }
 
-        [HttpGet("store-menu/top-meals/{storeid}")]
+        [HttpGet("store-menu/{storeid}")]
         public async Task<IActionResult> GetStoreMenueByStoreId([FromRoute] int storeid)
         {
             try

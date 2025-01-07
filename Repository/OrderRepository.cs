@@ -29,7 +29,10 @@ namespace officeeatsbackendapi.Repository
 
         public async Task<IEnumerable<Order>> GetAllOrdersByStoreIdAsync(int storeId)
         {
-            var results = await _context.Order.Where(x => x.ShopId == storeId).ToListAsync();
+            //var results = await _context.Order.Where(x => x.ShopId == storeId).ToListAsync();
+            var results = await _context.Order
+                        .Where(x => x.ShopId == storeId && x.OrderStatus != "Completed" && x.OrderStatus != "Declined")
+                        .ToListAsync();
             return results;
         }
 

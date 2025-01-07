@@ -51,7 +51,7 @@ namespace officeeatsbackendapi.Repository
 
         public async Task<IEnumerable<StoreMenu>> GetStoreMenueByStoreIdAsync(int storeId)
         {
-            var results = await _context.StoreMenu.Where(x => x.StoreId == storeId && x.TopMeal == true).ToListAsync();
+            var results = await _context.StoreMenu.Where(x => x.StoreId == storeId).ToListAsync();
             return results;
         }
 
