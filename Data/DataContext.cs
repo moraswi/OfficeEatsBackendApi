@@ -36,5 +36,11 @@ namespace officeeatsbackendapi.Data
 
         public DbSet<StoreAdmin> StoreAdmin { get; set; }
 
+        public DbSet<QuestionnaireOptions> QuestionnaireOptions { get; set; }
+
+        public DbSet<QuestionnaireTitles> QuestionnaireTitles { get; set; }
+
+
     }
+    
 }
