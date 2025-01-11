@@ -21,6 +21,10 @@ namespace OfficeEatsBackendApi.Dtos
 
         public DateTime? OrderDate { get; set; }
 
+        public int? OfficeId { get; set; }
+
+        public int? DeliveryPartnerId { get; set; }
+
         public int? ShopId { get; set; }
 
         public string? OrderCode { get; set; }

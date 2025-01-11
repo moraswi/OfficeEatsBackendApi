@@ -19,7 +19,6 @@
         public int? OfficeId { get; set; }
 
         public int? DeliveryPartnerId { get; set; }
-        
 
         public int? ShopId { get; set; }
 
