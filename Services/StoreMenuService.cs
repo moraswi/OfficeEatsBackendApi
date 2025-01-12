@@ -3,6 +3,7 @@ using officeeatsbackendapi.Dtos;
 using officeeatsbackendapi.Interfaces.Repository;
 using officeeatsbackendapi.Interfaces.Services;
 using officeeatsbackendapi.Models;
+using OfficeEatsBackendApi.Models;
 
 namespace officeeatsbackendapi.Services
 {
@@ -19,6 +20,7 @@ namespace officeeatsbackendapi.Services
             _storeMenuRepository = storeMenuRepository;
             _mapper = mapper;
         }
+
         #endregion Public Constructors
 
         public async Task<StoreMenu> AddStoreMenueAsync(StoreMenuDto storeMenu)
@@ -27,6 +29,17 @@ namespace officeeatsbackendapi.Services
             var results = await _storeMenuRepository.AddStoreMenueAsync(storeMenuEntity);
             
             return results;
+        }
+
+
+        public async Task<QuestionnaireOptions> AddQuestionnaireOptionsAsync(QuestionnaireOptions options)
+        {
+            return await _storeMenuRepository.AddQuestionnaireOptionsAsync(options);
+        }
+
+        public async Task<QuestionnaireTitles> AddQuestionnaireTitlesAsync(QuestionnaireTitles titles)
+        {
+            return await _storeMenuRepository.AddQuestionnaireTitlesAsync(titles);
         }
 
         public async Task<StoreMenuImages> AddStoreMenuImagesAsync(StoreMenuImages image)
@@ -38,6 +51,11 @@ namespace officeeatsbackendapi.Services
         {
             await _storeMenuRepository.DeleteStoreMenueAsync(id);
             return true;
+        }
+
+        public async Task<IEnumerable<QuestionnaireTitles>> getQuestionnaireTitlesAsync(int storeMenuId)
+        {
+            return await _storeMenuRepository.getQuestionnaireTitlesAsync(storeMenuId);
         }
 
         public async Task<IEnumerable<StoreMenu>> GetStoreMenueByCategoryIdAsync(int categoryId)

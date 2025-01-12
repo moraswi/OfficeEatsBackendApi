@@ -4,6 +4,7 @@ using officeeatsbackendapi.Dtos;
 using officeeatsbackendapi.Interfaces.Services;
 using officeeatsbackendapi.Models;
 using officeeatsbackendapi.Services;
+using OfficeEatsBackendApi.Models;
 
 namespace officeeatsbackendapi.Controllers
 {
@@ -36,18 +37,63 @@ namespace officeeatsbackendapi.Controllers
             }
         }
 
+
+        [HttpPost("questionnaire-title")]
+        public async Task<IActionResult> AddQuestionnaireTitlesAsync([FromBody] QuestionnaireTitles titles)
+        {
+            try
+            {
+                var results = await _storeMenuService.AddQuestionnaireTitlesAsync(titles);
+                return StatusCode(200, results);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error" });
+            }
+        }
+
+        [HttpPost("questionnaire-option")]
+        public async Task<IActionResult> AddQuestionnaireOptionsAsync([FromBody] QuestionnaireOptions options)
+        {
+            try
+            {
+                var results = await _storeMenuService.AddQuestionnaireOptionsAsync(options);
+                return StatusCode(200, results);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error" });
+            }
+        }
+
         [HttpPost("store-menu/images")]
         public async Task<IActionResult> AddStoreMenuImages([FromBody] StoreMenuImages image)
         {
-            //try
-            //{
+            try
+            {
                 var results = await _storeMenuService.AddStoreMenuImagesAsync(image);
                 return StatusCode(200, results);
-            //}
-            //catch (Exception ex)
-            //{
-            //    return StatusCode(500, new { message = "Internal server error" });
-            //}
+        }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error" });
+            }
+        }
+
+
+        [HttpGet("questionnaire-title/{storemenuid}")]
+        public async Task<IActionResult> getQuestionnaireTitlesAsync([FromRoute] int storemenuid)
+        {
+            try
+            {
+                var results = await _storeMenuService.getQuestionnaireTitlesAsync(storemenuid);
+                return StatusCode(200, results);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error" });
+            }
+
         }
 
         [HttpGet("store-menu/images/{storemenuid}")]

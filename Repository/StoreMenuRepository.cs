@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using officeeatsbackendapi.Data;
 using officeeatsbackendapi.Interfaces.Repository;
 using officeeatsbackendapi.Models;
+using OfficeEatsBackendApi.Models;
 
 namespace officeeatsbackendapi.Repository
 {
@@ -17,6 +19,8 @@ namespace officeeatsbackendapi.Repository
         {
             _context = context;
         }
+
+      
         #endregion Public Constructors
 
         public async Task<StoreMenu> AddStoreMenueAsync(StoreMenu storeMenu)
@@ -26,6 +30,22 @@ namespace officeeatsbackendapi.Repository
             await _context.SaveChangesAsync();
 
             return storeMenu;
+        }
+
+        public async Task<QuestionnaireOptions> AddQuestionnaireOptionsAsync(QuestionnaireOptions options)
+        {
+            await _context.QuestionnaireOptions.AddAsync(options);
+            await _context.SaveChangesAsync();
+
+            return options;
+        }
+
+        public async Task<QuestionnaireTitles> AddQuestionnaireTitlesAsync(QuestionnaireTitles titles)
+        {
+            await _context.QuestionnaireTitles.AddAsync(titles);
+            await _context.SaveChangesAsync();
+
+            return titles;
         }
 
         public async Task<StoreMenuImages> AddStoreMenuImagesAsync(StoreMenuImages image)
@@ -41,6 +61,11 @@ namespace officeeatsbackendapi.Repository
             _context.StoreMenu.Remove(storeMenu);
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        public async Task<IEnumerable<QuestionnaireTitles>> getQuestionnaireTitlesAsync(int storeMenuId)
+        {
+            return await _context.QuestionnaireTitles.Where(x => x.StoreMenuId == storeMenuId).ToListAsync();
         }
 
         public async Task<IEnumerable<StoreMenu>> GetStoreMenueByCategoryIdAsync(int categoryId)

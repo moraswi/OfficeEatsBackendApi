@@ -1,5 +1,6 @@
 ﻿using officeeatsbackendapi.Dtos;
 using officeeatsbackendapi.Models;
+using OfficeEatsBackendApi.Models;
 
 namespace officeeatsbackendapi.Interfaces.Services
 {
@@ -8,6 +9,12 @@ namespace officeeatsbackendapi.Interfaces.Services
         Task<StoreMenu> AddStoreMenueAsync(StoreMenuDto storeMenu);
 
         Task<StoreMenuImages> AddStoreMenuImagesAsync(StoreMenuImages image);
+
+        Task<QuestionnaireOptions> AddQuestionnaireOptionsAsync(QuestionnaireOptions options);
+
+        Task<QuestionnaireTitles> AddQuestionnaireTitlesAsync(QuestionnaireTitles titles);
+
+        Task<IEnumerable<QuestionnaireTitles>> getQuestionnaireTitlesAsync(int storeMenuId);
 
         Task<StoreMenuImages> GetStoreMenuImagesAsync(int storeMenuId);
 
