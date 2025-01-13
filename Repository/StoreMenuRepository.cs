@@ -63,14 +63,32 @@ namespace officeeatsbackendapi.Repository
             return true;
         }
 
-        public async Task<IEnumerable<QuestionnaireTitles>> getQuestionnaireTitlesAsync(int storeMenuId)
+        public async Task<IEnumerable<object>> getQuestionnaireTitlesAsync(int storeMenuId)
         {
-            return await _context.QuestionnaireTitles.Where(x => x.StoreMenuId == storeMenuId).ToListAsync();
+            return await _context.QuestionnaireTitles
+               .Where(qt => qt.StoreMenuId == storeMenuId)
+               .Select(qt => new
+               {
+                   id = qt.Id,
+                   storeMenuId = qt.StoreMenuId,
+                   title = qt.Title,
+                   options = _context.QuestionnaireOptions
+                       .Where(qo => qo.QuestionnaireTitleId == qt.Id)
+                       .Select(qo => new
+                       {
+                           name = qo.Name,
+                           price = qo.Price
+                       }).ToList()
+               })
+               .ToListAsync();
         }
 
         public async Task<IEnumerable<StoreMenu>> GetStoreMenueByCategoryIdAsync(int categoryId)
         {
-            var results = await _context.StoreMenu.Include(menu => menu.StoreMenuImages).Where(x => x.CategoryId == categoryId).ToListAsync();
+            var results = await _context.StoreMenu
+                .Include(menu => menu.StoreMenuImages)
+                .Where(x => x.CategoryId == categoryId)
+                .ToListAsync();
             return results;
         }
 

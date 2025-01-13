@@ -53,7 +53,7 @@ namespace officeeatsbackendapi.Services
             return true;
         }
 
-        public async Task<IEnumerable<QuestionnaireTitles>> getQuestionnaireTitlesAsync(int storeMenuId)
+        public async Task<IEnumerable<object>> getQuestionnaireTitlesAsync(int storeMenuId)
         {
             return await _storeMenuRepository.getQuestionnaireTitlesAsync(storeMenuId);
         }

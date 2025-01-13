@@ -84,15 +84,15 @@ namespace officeeatsbackendapi.Controllers
         [HttpGet("questionnaire-title/{storemenuid}")]
         public async Task<IActionResult> getQuestionnaireTitlesAsync([FromRoute] int storemenuid)
         {
-            try
-            {
+            //try
+            //{
                 var results = await _storeMenuService.getQuestionnaireTitlesAsync(storemenuid);
                 return StatusCode(200, results);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = "Internal server error" });
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    return StatusCode(500, new { message = "Internal server error" });
+            //}
 
         }
 

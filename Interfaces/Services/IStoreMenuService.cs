@@ -14,7 +14,7 @@ namespace officeeatsbackendapi.Interfaces.Services
 
         Task<QuestionnaireTitles> AddQuestionnaireTitlesAsync(QuestionnaireTitles titles);
 
-        Task<IEnumerable<QuestionnaireTitles>> getQuestionnaireTitlesAsync(int storeMenuId);
+        Task<IEnumerable<object>> getQuestionnaireTitlesAsync(int storeMenuId);
 
         Task<StoreMenuImages> GetStoreMenuImagesAsync(int storeMenuId);
 
