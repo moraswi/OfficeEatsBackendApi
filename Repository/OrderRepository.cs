@@ -65,16 +65,18 @@ namespace officeeatsbackendapi.Repository
             await _context.SaveChangesAsync();
             return order;
         }
-
+                        //.Where(x => x.OfficeId == officeId &&
+                        //    (x.OrderStatus != "Pending" &&
+                        //     x.OrderStatus != "Declined" &&
+                        //     x.OrderStatus != "Completed" &&
+                        //     x.OrderStatus != "Arrived" &&
+                        //     x.OrderStatus != "Assigned to Delivery"))
         public async Task<IEnumerable<Order>> GetDeliveryPatnerOfficePendingOrderAsync(int officeId)
         {
             return await _context.Order
                 .Include(o => o.Items)
                 .Where(x => x.OfficeId == officeId &&
-                            (x.OrderStatus != "Pending" &&
-                             x.OrderStatus != "Declined" &&
-                             x.OrderStatus != "Completed" &&
-                             x.OrderStatus != "Assigned to Delivery"))
+                            (x.OrderStatus == "Accepted"))
                 .ToListAsync();
         }
 
@@ -83,7 +85,7 @@ namespace officeeatsbackendapi.Repository
              return await _context.Order
                 .Include(o => o.Items)
                 .Where(x => x.DeliveryPartnerId == deliveryPartnerId &&
-                            x.OrderStatus != "Completed")
+                            x.OrderStatus != "Completed" && x.OrderStatus != "Accepted")
                 .ToListAsync();
         }
     }
