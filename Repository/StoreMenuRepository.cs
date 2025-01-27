@@ -76,6 +76,7 @@ namespace officeeatsbackendapi.Repository
                        .Where(qo => qo.QuestionnaireTitleId == qt.Id)
                        .Select(qo => new
                        {
+                           id = qo.Id,
                            name = qo.Name,
                            price = qo.Price
                        }).ToList()
