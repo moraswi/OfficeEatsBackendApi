@@ -28,7 +28,7 @@ namespace officeeatsbackendapi.Services
         {
             var user = await _usersRepository.GetUserByUserIdAsync(changePassword.UserId);
 
-            if(user == null || VerifyPassword(changePassword.CurrentPassword, user.Password))
+            if(user == null || !VerifyPassword(changePassword.CurrentPassword, user.Password))
             {
                 return false;
             }
@@ -42,7 +42,6 @@ namespace officeeatsbackendapi.Services
             var results = _usersRepository.DeleteUserAsync(userId);
             return results;
         }
-
 
         public async Task<IEnumerable<UsersDto>> GetAllUsersAsync()
         {
@@ -78,25 +77,25 @@ namespace officeeatsbackendapi.Services
             return userDto;
         }
 
-        public async Task<ServiceResponse<UsersDto>> LogInAsyncOld(LogInDto logIn)
-        {
-            var response = new ServiceResponse<UsersDto>();
-            var result = await _usersRepository.GetUserByEmailAsync(logIn.Email);
+        //public async Task<ServiceResponse<UsersDto>> LogInAsyncOld(LogInDto logIn)
+        //{
+        //    var response = new ServiceResponse<UsersDto>();
+        //    var result = await _usersRepository.GetUserByEmailAsync(logIn.Email);
 
-            if(result == null || !VerifyPassword(logIn.Password, result.Password))
-            {
-                response.Success = false;
-                response.Message = "Invalid username or password.";
-                return response;
-            }
+        //    if(result == null || !VerifyPassword(logIn.Password, result.Password))
+        //    {
+        //        response.Success = false;
+        //        response.Message = "Invalid username or password.";
+        //        return response;
+        //    }
 
-            var userResponse = _mapper.Map<UsersDto>(result);
+        //    var userResponse = _mapper.Map<UsersDto>(result);
 
-            response.Data = userResponse;
-            response.Success = true;
-            return response;
+        //    response.Data = userResponse;
+        //    response.Success = true;
+        //    return response;
 
-        }
+        //}
 
         public async Task<ServiceResponse<LoginResponseDto>> LogInAsync(LogInDto logIn)
         {
@@ -147,8 +146,6 @@ namespace officeeatsbackendapi.Services
             return response;
         }
 
-
-
         public async Task<ServiceResponse<UsersDto>> RegisterUserAsync(RegisterUserDto registerUser)
         {
             var response = new ServiceResponse<UsersDto>();
@@ -196,7 +193,7 @@ namespace officeeatsbackendapi.Services
                     await _usersRepository.RegisterDeliveryPartnerAsync(deliveryPartner);
                     break;
 
-                case "client":
+                case "customer":
                     // No additional role registration needed for clients
                     break;
 
@@ -239,6 +236,5 @@ namespace officeeatsbackendapi.Services
             return BCrypt.Net.BCrypt.Verify(currentPassword, storedPassword);
         }
 
-     
     }
 }

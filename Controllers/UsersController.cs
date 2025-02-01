@@ -61,18 +61,25 @@ namespace pepbackendapi.Controllers
 
 
         [HttpPost("change-password")]
-        public async Task<bool> ChangePassword([FromBody] ChangePasswordDto changePassword)
+        public async Task<ActionResult<bool>> ChangePassword([FromBody] ChangePasswordDto changePassword)
         {
             try
             {
                 var results = await _usersService.ChangePasswordAsync(changePassword);
-                return true;
+
+                if (!results)
+                {
+                    return BadRequest(false);
+                }
+
+                return StatusCode(200, true);
             }
             catch (Exception ex)
             {
                 return false;
             }
         }
+
 
         [HttpGet("users")]
         public async Task<IActionResult> GetAllUsers()
@@ -88,6 +95,7 @@ namespace pepbackendapi.Controllers
             }
         }
 
+
         [HttpGet("user/{userid}")]
         public async Task<IActionResult> GetUserByUserId(int userid)
         {
@@ -102,19 +110,20 @@ namespace pepbackendapi.Controllers
             }
         }
 
-        //[HttpPut("users")]
-        //public async Task<IActionResult> UpdateUser([FromBody] UsersDto user) {
+        [HttpPut("users")]
+        public async Task<IActionResult> UpdateUser([FromBody] UsersDto user)
+        {
 
-        //    try
-        //    {
-        //        await _usersService.UpdateUserAsync(user);
-        //        return StatusCode(200, user);
-        //}
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, new { message = "Internal server error" });
-        //    }
-        //}
+            try
+            {
+                await _usersService.UpdateUserAsync(user);
+                return StatusCode(200, user);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error" });
+            }
+        }
 
         [HttpDelete("user/{userid}")]
         public async Task<bool> DeleteUser(int userid)

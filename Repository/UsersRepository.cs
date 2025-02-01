@@ -78,10 +78,10 @@ namespace officeeatsbackendapi.Repository
         public async Task<bool> ChangePasswordAsync(int userID, string newPassword)
         {
             var user = await GetUserByUserIdAsync(userID);
-            if (user == null)
-            {
-                return false;
-            }
+            //if (user == null)
+            //{
+            //    return false;
+            //}
 
             user.Password = HashPassword(newPassword);
 

@@ -30,9 +30,11 @@ namespace officeeatsbackendapi.Repository
 
         public async Task<IEnumerable<Order>> GetAllOrdersByStoreIdAsync(int storeId)
         {
-            //var results = await _context.Order.Where(x => x.ShopId == storeId).ToListAsync();
             var results = await _context.Order
-                        .Where(x => x.ShopId == storeId && x.OrderStatus != "Completed" && x.OrderStatus != "Declined")
+                        .Where(x => x.ShopId == storeId && 
+                        x.OrderStatus == "Pending" || 
+                        x.OrderStatus == "Accepted"  || 
+                        x.OrderStatus == "Assigned to Delivery")
                         .ToListAsync();
             return results;
         }
@@ -65,12 +67,7 @@ namespace officeeatsbackendapi.Repository
             await _context.SaveChangesAsync();
             return order;
         }
-                        //.Where(x => x.OfficeId == officeId &&
-                        //    (x.OrderStatus != "Pending" &&
-                        //     x.OrderStatus != "Declined" &&
-                        //     x.OrderStatus != "Completed" &&
-                        //     x.OrderStatus != "Arrived" &&
-                        //     x.OrderStatus != "Assigned to Delivery"))
+
         public async Task<IEnumerable<Order>> GetDeliveryPatnerOfficePendingOrderAsync(int officeId)
         {
             return await _context.Order
