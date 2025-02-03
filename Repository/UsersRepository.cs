@@ -57,7 +57,7 @@ namespace officeeatsbackendapi.Repository
 
         public async Task<Users> GetUserByUserIdAsync(int userId)
         {
-            var results = await _context.Users.SingleOrDefaultAsync(x => x.Id == userId);
+            var results = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId);
             return results;
         }
 

@@ -114,15 +114,15 @@ namespace pepbackendapi.Controllers
         public async Task<IActionResult> UpdateUser([FromBody] UsersDto user)
         {
 
-            try
-            {
+            //try
+            //{
                 await _usersService.UpdateUserAsync(user);
                 return StatusCode(200, user);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = "Internal server error" });
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    return StatusCode(500, new { message = "Internal server error" });
+            //}
         }
 
         [HttpDelete("user/{userid}")]

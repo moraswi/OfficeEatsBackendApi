@@ -226,6 +226,13 @@ namespace officeeatsbackendapi.Services
         public async Task<UsersDto> UpdateUserAsync(UsersDto user)
         {
             var mapUser = _mapper.Map<Users>(user);
+
+            if (string.IsNullOrEmpty(mapUser.Password))
+            {
+                var existingUser = await _usersRepository.GetUserByUserIdAsync(mapUser.Id);
+                mapUser.Password = existingUser.Password;  // Retain existing password if not updated
+            }
+
             var results = await _usersRepository.UpdateUserAsync(mapUser);
             var userDto = _mapper.Map<UsersDto>(results);
             return userDto;
