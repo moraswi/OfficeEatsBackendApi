@@ -25,7 +25,9 @@ namespace officeeatsbackendapi.Interfaces.Services
         Task<ServiceResponse<LoginResponseDto>> LogInAsync(LogInDto logIn);
 
         Task<UsersDto> UpdateUserAsync(UsersDto user);
+
         Task<bool> UpdateUser(UsersDto userDto);
+
         Task<bool> ChangePasswordAsync(ChangePasswordDto changePassword);
 
         Task<bool> DeleteUserAsync(int userId);

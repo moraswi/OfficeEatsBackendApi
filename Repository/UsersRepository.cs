@@ -126,7 +126,7 @@ namespace officeeatsbackendapi.Repository
         public async Task<bool> UpdateUser(Users user)
         {
             _context.Users.Update(user);
-            return await _context.SaveChangesAsync() > 0;
+            return await _context.SaveChangesAsync()  > 0;
         }
     }
 }
