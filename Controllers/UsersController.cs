@@ -110,19 +110,37 @@ namespace pepbackendapi.Controllers
             }
         }
 
-        [HttpPut("users")]
-        public async Task<IActionResult> UpdateUser([FromBody] UsersDto user)
-        {
+        //[HttpPut("users")]
+        //public async Task<IActionResult> UpdateUser([FromBody] UsersDto user)
+        //{
 
             //try
             //{
-                await _usersService.UpdateUserAsync(user);
-                return StatusCode(200, user);
+                //await _usersService.UpdateUserAsync(user);
+                //return StatusCode(200, user);
             //}
             //catch (Exception ex)
             //{
             //    return StatusCode(500, new { message = "Internal server error" });
             //}
+        //}
+
+        [HttpPut("users/{id}")]
+        public async Task<IActionResult> UpdateUser(int id, [FromBody] UsersDto userDto)
+        {
+            if (id != userDto.Id)
+            {
+                return BadRequest("User ID mismatch.");
+            }
+
+            var result = await _usersService.UpdateUser(userDto);
+           
+            if (!result)
+            {
+                return NotFound("User not found or failed to update.");
+            }
+
+            return StatusCode(200, result);
         }
 
         [HttpDelete("user/{userid}")]

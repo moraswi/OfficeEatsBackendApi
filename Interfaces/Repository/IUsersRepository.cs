@@ -28,6 +28,8 @@ namespace officeeatsbackendapi.Interfaces.Repository
 
         Task<Users> UpdateUserAsync(Users user);
 
+        Task<bool> UpdateUser(Users user);
+
         Task<bool> DeleteUserAsync(int userId);
 
     }

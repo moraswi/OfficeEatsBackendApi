@@ -122,5 +122,11 @@ namespace officeeatsbackendapi.Repository
         {
             return await _context.DeliveryPartner.FirstOrDefaultAsync(dp => dp.UserId == userId);
         }
+
+        public async Task<bool> UpdateUser(Users user)
+        {
+            _context.Users.Update(user);
+            return await _context.SaveChangesAsync() > 0;
+        }
     }
 }

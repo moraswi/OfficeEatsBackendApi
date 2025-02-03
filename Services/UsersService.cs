@@ -4,6 +4,7 @@ using officeeatsbackendapi.Dtos;
 using officeeatsbackendapi.Interfaces.Repository;
 using officeeatsbackendapi.Interfaces.Services;
 using officeeatsbackendapi.Models;
+using officeeatsbackendapi.Repository;
 using OfficeEatsBackendApi.Dtos;
 using OfficeEatsBackendApi.Models;
 
@@ -243,5 +244,21 @@ namespace officeeatsbackendapi.Services
             return BCrypt.Net.BCrypt.Verify(currentPassword, storedPassword);
         }
 
+        public async Task<bool> UpdateUser(UsersDto userDto)
+        {
+            // Retrieve user entity from the repository
+            var user = await _usersRepository.GetUserByUserIdAsync(userDto.Id);
+            if (user == null) return false;
+
+            // Update user properties
+            user.FirstName = userDto.FirstName;
+            user.LastName = userDto.LastName;
+            user.PhoneNumber = userDto.PhoneNumber;
+            user.Email = userDto.Email;
+            user.Role = userDto.Role;
+
+            // Save the changes through the repository
+            return await _usersRepository.UpdateUser(user);
+        }
     }
 }
