@@ -73,26 +73,53 @@ namespace officeeatsbackendapi.Controllers
             {
                 var results = await _storeMenuService.AddStoreMenuImagesAsync(image);
                 return StatusCode(200, results);
-        }
+            }
             catch (Exception ex)
             {
                 return StatusCode(500, new { message = "Internal server error" });
             }
         }
 
-
-        [HttpGet("questionnaire-title/{storemenuid}")]
-        public async Task<IActionResult> getQuestionnaireTitlesAsync([FromRoute] int storemenuid)
+        [HttpPost("order-customization")]
+        public async Task<IActionResult> AddOrderCustomizations([FromBody] OrderCustomizations customization)
         {
             //try
             //{
-                var results = await _storeMenuService.getQuestionnaireTitlesAsync(storemenuid);
+                var results = await _storeMenuService.AddOrderCustomizationsAsync(customization);
                 return StatusCode(200, results);
             //}
             //catch (Exception ex)
             //{
             //    return StatusCode(500, new { message = "Internal server error" });
             //}
+        }
+
+        [HttpGet("order-customizations-byiteiId/{itemId}")]
+        public async Task<IActionResult> getOrderCustomizationsByItemIdAsync([FromRoute] int itemId)
+        {
+            try
+            {
+                var results = await _storeMenuService.getOrderCustomizationsByItemIdAsync(itemId);
+                return StatusCode(200, results);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error" });
+            }
+        }
+
+        [HttpGet("questionnaire-title/{storemenuid}")]
+        public async Task<IActionResult> getQuestionnaireTitlesAsync([FromRoute] int storemenuid)
+        {
+            try
+            {
+                var results = await _storeMenuService.getQuestionnaireTitlesAsync(storemenuid);
+                return StatusCode(200, results);
+        }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error" });
+            }
 
         }
 

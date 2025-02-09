@@ -116,5 +116,17 @@ namespace officeeatsbackendapi.Repository
             await _context.SaveChangesAsync();
             return storeMenu;
         }
+
+        public async Task<OrderCustomizations> AddOrderCustomizationsAsync(OrderCustomizations customization)
+        {
+            await _context.OrderCustomizations.AddAsync(customization);
+            await _context.SaveChangesAsync();
+            return customization;
+        }
+
+        public async Task<IEnumerable<OrderCustomizations>> getOrderCustomizationsByItemIdAsync(int itemId)
+        {
+            return await _context.OrderCustomizations.Where(x => x.OrderItemId == itemId).ToListAsync();
+        }
     }
 }

@@ -80,15 +80,15 @@ namespace officeeatsbackendapi.Controllers
         [HttpPut("order")]
         public async Task<IActionResult> UpdateOrder([FromBody] UpdateOrderDto updateOrderDto)
         {
-            //try
-            //{
+            try
+            {
                 var results = await _orderServices.UpdateOrderAsync(updateOrderDto);
                 return StatusCode(200, results);
-            //}
-            //catch (Exception ex)
-            //{
-            //    return StatusCode(500, new { message = "Internal server error" });
-            //}
+        }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error" });
+            }
         }
     }
 }

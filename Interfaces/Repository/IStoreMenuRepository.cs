@@ -8,9 +8,15 @@ namespace officeeatsbackendapi.Interfaces.Repository
         Task<StoreMenu> AddStoreMenueAsync(StoreMenu storeMenu);
 
         Task<StoreMenuImages> AddStoreMenuImagesAsync(StoreMenuImages image);
+
         Task<QuestionnaireOptions> AddQuestionnaireOptionsAsync(QuestionnaireOptions options);
 
+
         Task<QuestionnaireTitles> AddQuestionnaireTitlesAsync(QuestionnaireTitles titles);
+
+        Task<OrderCustomizations> AddOrderCustomizationsAsync(OrderCustomizations customization);
+
+        Task<IEnumerable<OrderCustomizations>> getOrderCustomizationsByItemIdAsync(int itemId);
 
         Task<IEnumerable<object>> getQuestionnaireTitlesAsync(int storeMenuId);
 

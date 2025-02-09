@@ -2,6 +2,7 @@
 using officeeatsbackendapi.Dtos;
 using officeeatsbackendapi.Models;
 using OfficeEatsBackendApi.Dtos;
+using OfficeEatsBackendApi.Models;
 
 
 namespace officeeatsbackendapi.Helpers
@@ -38,6 +39,9 @@ namespace officeeatsbackendapi.Helpers
             CreateMap<Rate, RateDto>();
 
             CreateMap<UpdateOrderDto, Order>();
+            CreateMap<OrderCustomizationsDto, OrderCustomizations>();
+            CreateMap<OrderCustomizations, OrderCustomizationsDto>();
+
 
             CreateMap<OrderItemDto, OrderItem>()
                   .ForMember(dest => dest.TotalPrice, opt => opt.MapFrom(src => src.Quantity * src.ItemPrice));

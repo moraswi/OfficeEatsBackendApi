@@ -85,5 +85,15 @@ namespace officeeatsbackendapi.Services
            var results = await _storeMenuRepository.UpdateStoreMenuAsync(storeMenu);
             return results;
         }
+
+        public async Task<OrderCustomizations> AddOrderCustomizationsAsync(OrderCustomizations customization)
+        {
+            return await _storeMenuRepository.AddOrderCustomizationsAsync(customization);
+        }
+
+        public async Task<IEnumerable<OrderCustomizations>> getOrderCustomizationsByItemIdAsync(int itemId)
+        {
+            return await _storeMenuRepository.getOrderCustomizationsByItemIdAsync(itemId);
+        }
     }
 }

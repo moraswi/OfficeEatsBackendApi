@@ -1,4 +1,6 @@
-﻿namespace officeeatsbackendapi.Dtos
+﻿using OfficeEatsBackendApi.Dtos;
+
+namespace officeeatsbackendapi.Dtos
 {
     public class OrderItemDto
     {
@@ -14,6 +16,7 @@
 
         public string? FoodName { get; set; }
 
+        public List<OrderCustomizationsDto> OrderCustomizations { get; set; }
 
     }
 }
