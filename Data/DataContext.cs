@@ -39,9 +39,10 @@ namespace officeeatsbackendapi.Data
         public DbSet<QuestionnaireOptions> QuestionnaireOptions { get; set; }
 
         public DbSet<QuestionnaireTitles> QuestionnaireTitles { get; set; }
+
         public DbSet<OrderCustomizations> OrderCustomizations { get; set; }
 
+        public DbSet<OrderStatusHistory> OrderStatusHistory { get; set; }
         
     }
-    
 }

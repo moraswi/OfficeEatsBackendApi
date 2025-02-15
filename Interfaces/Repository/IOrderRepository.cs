@@ -1,10 +1,15 @@
 ﻿using officeeatsbackendapi.Models;
+using OfficeEatsBackendApi.Models;
 
 namespace officeeatsbackendapi.Interfaces.Repository
 {
     public interface IOrderRepository
     {
         Task<Order> AddOrderAsync(Order order);
+
+        Task<OrderStatusHistory> AddOrderStatusAsync(OrderStatusHistory status);
+
+        Task<IEnumerable<OrderStatusHistory>> GetOrderStatusByOrderIdAsync(int orderId);
 
         Task<IEnumerable<Order>> GetAllOrdersByStoreIdAsync(int storeId);
 

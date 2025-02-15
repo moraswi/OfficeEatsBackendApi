@@ -5,6 +5,7 @@ using officeeatsbackendapi.Interfaces.Repository;
 using officeeatsbackendapi.Interfaces.Services;
 using officeeatsbackendapi.Models;
 using OfficeEatsBackendApi.Dtos;
+using OfficeEatsBackendApi.Models;
 
 namespace officeeatsbackendapi.Services
 {
@@ -96,6 +97,16 @@ namespace officeeatsbackendapi.Services
         public async Task<IEnumerable<Order>> GetDeliveryPatnerOrderAsync(int deliveryPartnerId)
         {
             return await _orderRepository.GetDeliveryPatnerOrderAsync(deliveryPartnerId);
+        }
+
+        public async Task<OrderStatusHistory> AddOrderStatusAsync(OrderStatusHistory status)
+        {
+            return await _orderRepository.AddOrderStatusAsync(status);
+        }
+
+        public async Task<IEnumerable<OrderStatusHistory>> GetOrderStatusByOrderIdAsync(int orderId)
+        {
+            return await _orderRepository.GetOrderStatusByOrderIdAsync(orderId);
         }
     }
 }

@@ -85,5 +85,18 @@ namespace officeeatsbackendapi.Repository
                             x.OrderStatus != "Completed" && x.OrderStatus != "Accepted")
                 .ToListAsync();
         }
+
+        public async Task<OrderStatusHistory> AddOrderStatusAsync(OrderStatusHistory status)
+        {
+            await _context.OrderStatusHistory.AddAsync(status);
+            await _context.SaveChangesAsync();
+            return status;
+        }
+
+        public async Task<IEnumerable<OrderStatusHistory>> GetOrderStatusByOrderIdAsync(int orderId)
+        {
+            var statuses = await _context.OrderStatusHistory.Where(x => x.OrderId == orderId).ToListAsync();
+            return statuses;
+        }
     }
 }
