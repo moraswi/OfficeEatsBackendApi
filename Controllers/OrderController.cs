@@ -82,6 +82,25 @@ namespace officeeatsbackendapi.Controllers
             return StatusCode(200, response);
         }
 
+        [HttpGet("order/status/{orderId}")]
+        public async Task<IActionResult> GetOrderStatusByOrderId([FromRoute] int orderId)
+        {
+            if (orderId <= 0)
+            {
+                return BadRequest("Invalid order ID.");
+            }
+
+            var response = await _orderServices.GetOrderStatusByOrderIdAsync(orderId);
+
+            if (response == null || !response.Any())
+            {
+                return NotFound("No orders found for the given store.");
+            }
+
+            return StatusCode(200, response);
+        }
+
+
         [HttpGet("order/store/{storeid}")]
         public async Task<IActionResult> GetAllOrdersByStoreId([FromRoute] int storeid) 
         {

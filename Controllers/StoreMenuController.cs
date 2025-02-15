@@ -83,15 +83,15 @@ namespace officeeatsbackendapi.Controllers
         [HttpPost("order-customization")]
         public async Task<IActionResult> AddOrderCustomizations([FromBody] OrderCustomizations customization)
         {
-            //try
-            //{
+            try
+            {
                 var results = await _storeMenuService.AddOrderCustomizationsAsync(customization);
                 return StatusCode(200, results);
-            //}
-            //catch (Exception ex)
-            //{
-            //    return StatusCode(500, new { message = "Internal server error" });
-            //}
+        }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error" });
+            }
         }
 
         [HttpGet("order-customizations-byiteiId/{itemId}")]
