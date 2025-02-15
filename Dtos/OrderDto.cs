@@ -1,4 +1,7 @@
-﻿namespace officeeatsbackendapi.Dtos
+﻿using OfficeEatsBackendApi.Dtos;
+using OfficeEatsBackendApi.Models;
+
+namespace officeeatsbackendapi.Dtos
 {
     public class OrderDto
     {
@@ -20,6 +23,8 @@
         public string? Description { get; set; }
 
         public List<OrderItemDto> Items { get; set; }
+
+        public OrderStatusHistoryDto? OrderStatusHistory { get; set; }
 
     }
 }

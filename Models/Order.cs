@@ -1,4 +1,6 @@
-﻿namespace officeeatsbackendapi.Models
+﻿using OfficeEatsBackendApi.Models;
+
+namespace officeeatsbackendapi.Models
 {
     public class Order
     {
@@ -29,5 +31,7 @@
         public string? Description { get; set; }
         
         public List<OrderItem> Items { get; set; } = new List<OrderItem>();
+
+        public OrderStatusHistory? OrderStatusHistory { get; set; }
     }
 }

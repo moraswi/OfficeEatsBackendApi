@@ -10,13 +10,13 @@ namespace officeeatsbackendapi.Helpers
     public class MappingProfile : Profile
     {
         public MappingProfile() {
-          
+
             CreateMap<Users, UsersDto>();
             CreateMap<UsersDto, Users>();
 
             CreateMap<RegisterUserDto, Users>();
             CreateMap<Users, LoginResponseDto>();
-            
+
             CreateMap<Users, LogInDto>();
             CreateMap<ChangePasswordDto, Users>();
 
@@ -38,17 +38,22 @@ namespace officeeatsbackendapi.Helpers
             CreateMap<RateDto, Rate>();
             CreateMap<Rate, RateDto>();
 
-            CreateMap<UpdateOrderDto, Order>();
+            //CreateMap<UpdateOrderDto, Order>();
             CreateMap<OrderCustomizationsDto, OrderCustomizations>();
             CreateMap<OrderCustomizations, OrderCustomizationsDto>();
+            CreateMap<OrderCustomizationsDto, OrderCustomizations>();
 
+            CreateMap<OrderStatusHistory, OrderStatusHistoryDto>();
+            CreateMap<OrderStatusHistoryDto, OrderStatusHistory>();
 
             CreateMap<OrderItemDto, OrderItem>()
                   .ForMember(dest => dest.TotalPrice, opt => opt.MapFrom(src => src.Quantity * src.ItemPrice));
 
             CreateMap<OrderDto, Order>()
                 .ForMember(dest => dest.TotalAmount, opt => opt.MapFrom(src => src.Items.Sum(i => i.Quantity * i.ItemPrice)))
-                .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items));
+                .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items))
+                .ForMember(dest => dest.OrderStatusHistory, opt => opt.MapFrom(src => src.OrderStatusHistory));
+
 
         }
     }

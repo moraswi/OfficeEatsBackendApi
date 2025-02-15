@@ -47,7 +47,10 @@ namespace officeeatsbackendapi.Repository
 
         public async Task<Order> GetOrderByIdAsync(int orderId)
         {
-            var results = await _context.Order.Include(o => o.Items).FirstOrDefaultAsync(o => o.Id == orderId);
+            var results = await _context.Order
+                .Include(o => o.Items).
+                Include(o => o.OrderStatusHistory).
+                FirstOrDefaultAsync(o => o.Id == orderId);
             return results;
         }
 
@@ -55,6 +58,7 @@ namespace officeeatsbackendapi.Repository
         {
             var results = await _context.Order
                 .Include(o => o.Items)
+                .Include(o => o.OrderStatusHistory)
                 .Where(x => x.UserId == userId)
                 .ToListAsync();
             return results;
@@ -72,6 +76,7 @@ namespace officeeatsbackendapi.Repository
         {
             return await _context.Order
                 .Include(o => o.Items)
+                .Include(o => o.OrderStatusHistory)
                 .Where(x => x.OfficeId == officeId &&
                             (x.OrderStatus == "Accepted"))
                 .ToListAsync();
@@ -81,6 +86,7 @@ namespace officeeatsbackendapi.Repository
         {
              return await _context.Order
                 .Include(o => o.Items)
+                .Include(o => o.OrderStatusHistory)
                 .Where(x => x.DeliveryPartnerId == deliveryPartnerId &&
                             x.OrderStatus != "Completed" && x.OrderStatus != "Accepted")
                 .ToListAsync();
