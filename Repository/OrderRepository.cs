@@ -85,11 +85,11 @@ namespace officeeatsbackendapi.Repository
              return await _context.Order
                 .Include(o => o.Items)
                 .Include(o => o.OrderStatusHistory)
-                .Where(x => x.DeliveryPartnerId == deliveryPartnerId &&
-                            x.OrderStatus != "Completed" && x.OrderStatus != "Accepted")
+                .Where(x => x.DeliveryPartnerId == deliveryPartnerId && 
+                            x.OrderStatusHistory.Any(os => os.Status != "Completed"))
                 .ToListAsync();
         }
-
+       //
         public async Task<OrderStatusHistory> AddOrderStatusAsync(OrderStatusHistory status)
         {
             await _context.OrderStatusHistory.AddAsync(status);
