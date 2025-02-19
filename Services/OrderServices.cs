@@ -31,6 +31,24 @@ namespace officeeatsbackendapi.Services
             order.OrderDate = DateTime.Now;
             order.OrderCode = GenerateOrderCode();
 
+            //order.OrderStatusHistory = new OrderStatusHistory
+            //{
+            //    Status = "Pending",
+            //    UpdatedBy = orderDto.UserId, // Adjust if needed
+            //    UpdatedAt = DateTime.Now
+            //};
+
+            order.OrderStatusHistory = new List<OrderStatusHistory>
+                    {
+                        new OrderStatusHistory
+                        {
+                            Status = "Pending",
+                            UpdatedBy = orderDto.UserId,
+                            UpdatedAt = DateTime.Now
+                        }
+                    };
+
+
             var savedOrder = await _orderRepository.AddOrderAsync(order);
 
             return new ServiceResponse<Order>

@@ -31,7 +31,7 @@ namespace officeeatsbackendapi.Models
         public string? Description { get; set; }
         
         public List<OrderItem> Items { get; set; } = new List<OrderItem>();
-
-        public OrderStatusHistory? OrderStatusHistory { get; set; }
+        public List<OrderStatusHistory> OrderStatusHistory { get; set; } = new List<OrderStatusHistory>();
+        //public OrderStatusHistory? OrderStatusHistory { get; set; }
     }
 }

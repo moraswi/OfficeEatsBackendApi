@@ -43,16 +43,22 @@ namespace officeeatsbackendapi.Helpers
             CreateMap<OrderCustomizations, OrderCustomizationsDto>();
             CreateMap<OrderCustomizationsDto, OrderCustomizations>();
 
-            CreateMap<OrderStatusHistory, OrderStatusHistoryDto>();
             CreateMap<OrderStatusHistoryDto, OrderStatusHistory>();
-
+            CreateMap<OrderStatusHistoryDto, OrderStatusHistory>();
             CreateMap<OrderItemDto, OrderItem>()
                   .ForMember(dest => dest.TotalPrice, opt => opt.MapFrom(src => src.Quantity * src.ItemPrice));
 
+            //CreateMap<OrderDto, Order>()
+            //    .ForMember(dest => dest.TotalAmount, opt => opt.MapFrom(src => src.Items.Sum(i => i.Quantity * i.ItemPrice)))
+            //    .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items))
+            //    .ForMember(dest => dest.OrderStatusHistory, opt => opt.MapFrom(src => src.OrderStatusHistory));
+
+            //CreateMap<OrderStatusHistoryDto, OrderStatusHistory>();
+
             CreateMap<OrderDto, Order>()
-                .ForMember(dest => dest.TotalAmount, opt => opt.MapFrom(src => src.Items.Sum(i => i.Quantity * i.ItemPrice)))
-                .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items))
-                .ForMember(dest => dest.OrderStatusHistory, opt => opt.MapFrom(src => src.OrderStatusHistory));
+                    .ForMember(dest => dest.TotalAmount, opt => opt.MapFrom(src => src.Items.Sum(i => i.Quantity * i.ItemPrice)))
+                    .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items))
+                    .ForMember(dest => dest.OrderStatusHistory, opt => opt.MapFrom(src => src.OrderStatusHistory));
 
 
         }

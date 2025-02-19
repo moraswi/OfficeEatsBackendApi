@@ -30,11 +30,8 @@ namespace officeeatsbackendapi.Repository
 
         public async Task<IEnumerable<Order>> GetAllOrdersByStoreIdAsync(int storeId)
         {
-            var results = await _context.Order
-                        .Where(x => x.ShopId == storeId && 
-                        x.OrderStatus == "Pending" || 
-                        x.OrderStatus == "Accepted"  || 
-                        x.OrderStatus == "Assigned to Delivery")
+            var results = await _context.Order.Include(i => i.Items).Include(o => o.OrderStatusHistory)
+                        .Where(x => x.ShopId == storeId)
                         .ToListAsync();
             return results;
         }

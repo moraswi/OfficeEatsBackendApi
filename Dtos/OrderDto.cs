@@ -23,8 +23,8 @@ namespace officeeatsbackendapi.Dtos
         public string? Description { get; set; }
 
         public List<OrderItemDto> Items { get; set; }
-
-        public OrderStatusHistoryDto? OrderStatusHistory { get; set; }
+        public List<OrderStatusHistoryDto> OrderStatusHistory { get; set; } = new List<OrderStatusHistoryDto>();
+        //public OrderStatusHistoryDto? OrderStatusHistory { get; set; }
 
     }
 }
