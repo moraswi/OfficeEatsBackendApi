@@ -86,7 +86,7 @@ namespace officeeatsbackendapi.Repository
                 .Include(o => o.Items)
                 .Include(o => o.OrderStatusHistory)
                 .Where(x => x.DeliveryPartnerId == deliveryPartnerId && 
-                            x.OrderStatusHistory.Any(os => os.Status != "Completed"))
+                            !x.OrderStatusHistory.Any(os => os.Status == "Completed"))
                 .ToListAsync();
         }
        //
