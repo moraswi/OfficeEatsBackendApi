@@ -24,6 +24,7 @@ namespace officeeatsbackendapi.Services
         }
 
         #endregion Public Constructors
+     
         public async Task<ServiceResponse<Order>> PlaceOrderAsync(OrderDto orderDto)
         {
             var order = _mapper.Map<Order>(orderDto);
@@ -73,19 +74,20 @@ namespace officeeatsbackendapi.Services
         }
 
         //not working well
-        public async Task<ServiceResponse<Order>> UpdateOrderAsync(UpdateOrderDto updateOrderDto)
+        public async Task<Order> UpdateOrderAsync(UpdateOrderDto updateOrderDto)
         {
-            var order = _mapper.Map<Order>(updateOrderDto);
-     
+            var order = await _orderRepository.GetOrderByIdAsync(updateOrderDto.Id);
 
-            var updatedOrder = await _orderRepository.UpdateOrderAsync(order);
+            if (order != null) {
+                order.Id = updateOrderDto.Id;
+                order.DeliveryPartnerId = updateOrderDto.DeliveryPartnerId;
 
-            return new ServiceResponse<Order>
-            {
-                Data = updatedOrder,
-                Success = true,
-                Message = "Order updated successfully."
-            };
+                var updatedOrder = await _orderRepository.UpdateOrderAsync(order);
+
+                return order;
+            }
+
+            return new Order();
         }
 
         private string GenerateOrderCode()

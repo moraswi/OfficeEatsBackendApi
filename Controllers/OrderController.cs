@@ -231,10 +231,10 @@ namespace officeeatsbackendapi.Controllers
                 }
                 return StatusCode(200, results);
         }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = "Internal server error" });
-            }
+                catch (Exception ex)
+                {
+                    return StatusCode(500, new { message = "Internal server error" });
+                }
         }
     }
 }

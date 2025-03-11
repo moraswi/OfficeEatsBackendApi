@@ -26,6 +26,6 @@ namespace officeeatsbackendapi.Interfaces.Services
 
         Task<IEnumerable<Order>> GetOrdersByUserIdAsync(int userId);
 
-        Task<ServiceResponse<Order>> UpdateOrderAsync(UpdateOrderDto updateOrderDto);
+        Task<Order> UpdateOrderAsync(UpdateOrderDto updateOrderDto);
     }
 }

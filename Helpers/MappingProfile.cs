@@ -38,7 +38,7 @@ namespace officeeatsbackendapi.Helpers
             CreateMap<RateDto, Rate>();
             CreateMap<Rate, RateDto>();
 
-            //CreateMap<UpdateOrderDto, Order>();
+            CreateMap<UpdateOrderDto, Order>();
             CreateMap<OrderCustomizationsDto, OrderCustomizations>();
             CreateMap<OrderCustomizations, OrderCustomizationsDto>();
             CreateMap<OrderCustomizationsDto, OrderCustomizations>();
@@ -59,6 +59,12 @@ namespace officeeatsbackendapi.Helpers
                     .ForMember(dest => dest.TotalAmount, opt => opt.MapFrom(src => src.Items.Sum(i => i.Quantity * i.ItemPrice)))
                     .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items))
                     .ForMember(dest => dest.OrderStatusHistory, opt => opt.MapFrom(src => src.OrderStatusHistory));
+
+            CreateMap<UpdatePaymentDto, Payments>();
+
+            //CreateMap<AddPaymentEventsDto, PaymentEvents>()
+            //// Map Custom Parameters manually
+            //.ForMember(dest => dest.CustomParameters_PEACH_MERCHANT_ID, opt => opt.MapFrom(src => src.CustomParameters.PEACH_MERCHANT_ID)).ReverseMap(); //uncomment this
 
 
         }

@@ -43,6 +43,10 @@ namespace officeeatsbackendapi.Data
         public DbSet<OrderCustomizations> OrderCustomizations { get; set; }
 
         public DbSet<OrderStatusHistory> OrderStatusHistory { get; set; }
-        
+
+        public DbSet<Payments> Payments { get; set; }
+
+        public DbSet<PaymentEvents> PaymentEvents { get; set; }
+
     }
 }

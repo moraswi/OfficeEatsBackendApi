@@ -4,6 +4,10 @@ using officeeatsbackendapi.Interfaces.Repository;
 using officeeatsbackendapi.Interfaces.Services;
 using officeeatsbackendapi.Repository;
 using officeeatsbackendapi.Services;
+using OfficeEatsBackendApi.Interfaces.Repository;
+using OfficeEatsBackendApi.Interfaces.Services;
+using OfficeEatsBackendApi.Repository;
+using OfficeEatsBackendApi.Services;
 //using pepbackendapi.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -47,6 +51,7 @@ builder.Services.AddScoped<ICategoriesRepository, CategoriesRepository>();
 builder.Services.AddScoped<IStoreMenuRepository, StoreMenuRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IRateRepository, RateRepository>();
+builder.Services.AddScoped<IPaymentGateWayRepository, PaymentGateWayRepository>();
 
 //services
 builder.Services.AddScoped<IUsersService, UsersService>();
@@ -57,6 +62,7 @@ builder.Services.AddScoped<ICategoriesService, CategoriesService>();
 builder.Services.AddScoped<IStoreMenuService, StoreMenuService>();
 builder.Services.AddScoped<IOrderServices, OrderServices>();
 builder.Services.AddScoped<IRateServices, RateServices>();
+builder.Services.AddScoped<IPaymentGateWayService, PaymentGateWayService>();
 
 //AddAutoMapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

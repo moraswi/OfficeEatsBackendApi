@@ -75,7 +75,7 @@ namespace officeeatsbackendapi.Repository
                 .Include(o => o.Items)
                 .Include(o => o.OrderStatusHistory)
                 .Where(x => x.OfficeId == officeId &&
-                            x.OrderStatusHistory.Any(os => os.Status == "Accepted") && 
+                            !x.OrderStatusHistory.Any(os => os.Status == "Assigned" || os.Status == "Completed") && 
                             (x.DeliveryPartnerId == null || x.DeliveryPartnerId == 0))
                 .ToListAsync();
         }
