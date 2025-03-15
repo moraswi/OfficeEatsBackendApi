@@ -128,6 +128,49 @@ namespace OfficeEatsBackendApi.Controllers
                              (prop.PropertyType == typeof(string) && string.IsNullOrWhiteSpace((string)prop.GetValue(request))));
         }
 
+        [HttpGet("{checkoutId}")]
+        public IActionResult RenderCheckout(string checkoutId)
+        {
+            Response.Headers["Permissions-Policy"] = "payment self 'src'";
+
+            return Content($@"
+                <!DOCTYPE html>
+                <html lang='en'>
+                  <head>
+                    <meta charset='UTF-8' />
+                    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no' />
+                    <title>Complete your payment</title>
+                    <script src='https://sandbox-checkout.peachpayments.com/js/checkout.js'></script>
+                  </head>
+                  <body>
+                    <div id='payment-form'></div>
+                    <script>
+                      const checkout = Checkout.initiate({{
+                        checkoutId: '{checkoutId}',
+                        key: '{Environment.GetEnvironmentVariable("PEACH_PAYMENTS_ENTITY_ID")}',
+                        events: {{
+                          onCompleted: (event) => {{
+                            console.log(event);
+                            checkout.unmount();
+                            document.getElementById('payment-form').innerText = 'Paid!';
+                          }},
+                          onCancelled: (event) => {{
+                            console.log(event);
+                            checkout.unmount();
+                            document.getElementById('payment-form').innerText = 'Cancelled!';
+                          }},
+                          onExpired: (event) => {{
+                            console.log(event);
+                            checkout.unmount();
+                            document.getElementById('payment-form').innerText = 'Expired!';
+                          }}
+                        }}
+                      }});
+                      checkout.render('#payment-form');
+                    </script>
+                  </body>
+                </html>", "text/html");
+        }
 
     }
 }
