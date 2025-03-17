@@ -16,6 +16,8 @@ namespace officeeatsbackendapi.Dtos
 
         public int? OfficeId { get; set; }
 
+        public decimal? DeliveryFee { get; set; }
+
         public int? DeliveryPartnerId { get; set; }
 
         public string? StoreName { get; set; }

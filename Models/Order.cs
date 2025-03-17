@@ -10,6 +10,8 @@ namespace officeeatsbackendapi.Models
 
         public decimal? TotalAmount { get; set; }
 
+        public decimal? DeliveryFee { get; set; }
+
         public string? DeliveryAddress { get; set; }
 
         public string? PaymentMethod { get; set; }
