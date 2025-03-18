@@ -9,5 +9,7 @@ namespace OfficeEatsBackendApi.Interfaces.Services
         Task<CheckoutResponseDto> CreateCheckoutAsync(CheckoutRequestDto request);
         Task<AddPaymentEventsDto> AddPaymentEvents(AddPaymentEventsDto request);
         Task<Payments> UpdatePaymentAsync(UpdatePaymentDto request);
+        Task<StoreBankingDetails> GetBankingDetailsByStoreIdAsync(int storeId);
+
     }
 }

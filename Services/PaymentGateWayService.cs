@@ -159,5 +159,9 @@ namespace OfficeEatsBackendApi.Services
             return _mapper.Map<AddPaymentEventsDto>(savedEvent);
         }
 
+        public async Task<StoreBankingDetails> GetBankingDetailsByStoreIdAsync(int storeId)
+        {
+            return await _repository.GetBankingDetailsByStoreIdAsync(storeId);
+        }
     }
 }

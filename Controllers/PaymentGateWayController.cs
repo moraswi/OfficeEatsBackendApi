@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using OfficeEatsBackendApi.Dtos;
 using OfficeEatsBackendApi.Interfaces.Services;
+using OfficeEatsBackendApi.Models;
 
 namespace OfficeEatsBackendApi.Controllers
 {
@@ -26,7 +27,6 @@ namespace OfficeEatsBackendApi.Controllers
         #endregion Public Constructors
 
 
-     
 
         [HttpPost("token")]
         public async Task<object> GetAuthToken()
@@ -170,6 +170,18 @@ namespace OfficeEatsBackendApi.Controllers
                     </script>
                   </body>
                 </html>", "text/html");
+        }
+
+
+        [HttpGet("store-banking-details/{storeId}")]
+        public async Task<ActionResult<StoreBankingDetails>> StoreBankingDetails(int storeId)
+        {
+            var results = await _paymentGateWayService.GetBankingDetailsByStoreIdAsync(storeId);
+            if (results == null)
+            {
+                return NotFound("Banking details not found for the specified store.");
+            }
+            return StatusCode(200, results);
         }
 
     }

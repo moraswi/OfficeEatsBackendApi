@@ -32,6 +32,11 @@ namespace OfficeEatsBackendApi.Repository
             return request;
         }
 
+        public async Task<StoreBankingDetails> GetBankingDetailsByStoreIdAsync(int storeId)
+        {
+            return await _context.StoreBankingDetails.FirstOrDefaultAsync(x => x.StoreId == storeId);
+        }
+
         public async Task<Payments> GetPaymentByTransactionIdAsync(string transactionId)
         {
             return await _context.Payments.FirstOrDefaultAsync(x => x.MerchantTransactionId == transactionId);

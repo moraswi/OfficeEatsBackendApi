@@ -49,6 +49,8 @@ namespace officeeatsbackendapi.Data
         public DbSet<PaymentEvents> PaymentEvents { get; set; }
 
         public DbSet<ChatbotMessages> ChatbotMessages { get; set; }
+
+        public DbSet<StoreBankingDetails> StoreBankingDetails { get; set; }
         
     }
 }
