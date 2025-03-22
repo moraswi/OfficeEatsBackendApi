@@ -26,7 +26,22 @@ namespace officeeatsbackendapi.Dtos
 
         public List<OrderItemDto> Items { get; set; }
         public List<OrderStatusHistoryDto> OrderStatusHistory { get; set; } = new List<OrderStatusHistoryDto>();
-        //public OrderStatusHistoryDto? OrderStatusHistory { get; set; }
+
+        public string? Town { get; set; }
+
+        public string? Province { get; set; }
+
+        public string? Apartment { get; set; }
+
+        public string? StreetAddress { get; set; }
+
+        public string? PostalCode { get; set; }
+
+        public string? RecipientName { get; set; }
+
+        public string? RecipientMobileNumber { get; set; }
+
+        public string? Suburb { get; set; }
 
     }
 }
