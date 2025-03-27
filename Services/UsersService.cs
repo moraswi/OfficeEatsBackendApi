@@ -180,7 +180,11 @@ namespace officeeatsbackendapi.Services
                     var storeAdmin = new StoreAdmin
                     {
                         UserId = newUser.Id,
-                        StoreId = (int)registerUser.StoreId // Assuming StoreId is passed in RegisterUserDto
+                        FirstName = registerUser.FirstName,
+                        LastName = registerUser.LastName,
+                        Email = registerUser.Email,
+                        Password = registerUser.Password,
+                        StoreId = (int)registerUser.StoreId 
                     };
                     await _usersRepository.RegisterStoreAdminAsync(storeAdmin);
                     break;

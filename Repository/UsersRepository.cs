@@ -113,9 +113,10 @@ namespace officeeatsbackendapi.Repository
             return deliveryPartner;
         }
 
+        //NEED TO DELETE THIS
         public async Task<StoreAdmin> GetStoreAdminByUserIdAsync(int userId)
         {
-            return await _context.StoreAdmin.FirstOrDefaultAsync(sa => sa.UserId == userId);
+            return await _context.StoreAdmin.FirstOrDefaultAsync(sa => sa.Id == userId);
         }
 
         public async Task<DeliveryPartner> GetDeliveryPartnerByUserIdAsync(int userId)
