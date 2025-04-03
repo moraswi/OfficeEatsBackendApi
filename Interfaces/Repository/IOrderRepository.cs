@@ -13,6 +13,10 @@ namespace officeeatsbackendapi.Interfaces.Repository
 
         Task<IEnumerable<Order>> GetAllOrdersByStoreIdAsync(int storeId);
 
+        Task<IEnumerable<Order>> GetCompletedOrdersAsync(int storeId);
+
+        Task<IEnumerable<Order>> GetOrdersWithoutCompletedStatusAsync(int storeId);
+
         Task<Order> GetOrderByIdAsync(int orderId);
 
         Task<IEnumerable<Order>> GetDeliveryPatnerOfficePendingOrderAsync(int officeId);

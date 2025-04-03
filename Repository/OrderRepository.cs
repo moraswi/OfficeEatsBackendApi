@@ -36,6 +36,29 @@ namespace officeeatsbackendapi.Repository
             return results;
         }
 
+        public async Task<IEnumerable<Order>> GetOrdersWithoutCompletedStatusAsync(int storeId)
+        {
+            var results = await _context.Order
+                .Include(i => i.Items)
+                .Include(o => o.OrderStatusHistory)
+                .Where(x => x.ShopId == storeId && !x.OrderStatusHistory.Any(h => h.Status == "Completed"))
+                .ToListAsync();
+
+            return results;
+        }
+
+        public async Task<IEnumerable<Order>> GetCompletedOrdersAsync(int storeId)
+        {
+            var results = await _context.Order
+                .Include(i => i.Items)
+                .Include(o => o.OrderStatusHistory)
+                .Where(x => x.ShopId == storeId && x.OrderStatusHistory.Any(h => h.Status == "Completed"))
+                .ToListAsync();
+
+            return results;
+        }
+
+
         public async Task<IEnumerable<OrderItem>> GetOrderItemsByOrderIdAsync(int orderId)
         {
             var results = await _context.OrderItem.Where(x => x.OrderId == orderId).ToListAsync();

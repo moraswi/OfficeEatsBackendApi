@@ -128,5 +128,15 @@ namespace officeeatsbackendapi.Services
         {
             return await _orderRepository.GetOrderStatusByOrderIdAsync(orderId);
         }
+
+        public async Task<IEnumerable<Order>> GetCompletedOrdersAsync(int storeId)
+        {
+            return await _orderRepository.GetCompletedOrdersAsync(storeId);
+        }
+
+        public async Task<IEnumerable<Order>> GetOrdersWithoutCompletedStatusAsync(int storeId)
+        {
+            return await _orderRepository.GetOrdersWithoutCompletedStatusAsync(storeId);
+        }
     }
 }

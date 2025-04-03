@@ -26,15 +26,6 @@ namespace officeeatsbackendapi.Controllers
         #endregion Public Constructors
 
 
-        //[HttpPost("place-order")]
-        //public async Task<IActionResult> PlaceOrder([FromBody] OrderDto orderDto)
-        //{
-        //    var response = await _orderServices.PlaceOrderAsync(orderDto);
-        //    if (response.Success)
-        //        return Ok(response);
-
-        //    return BadRequest(response);
-        //}
 
         [HttpPost("place-order")]
         public async Task<IActionResult> PlaceOrder([FromBody] OrderDto orderDto)
@@ -110,6 +101,42 @@ namespace officeeatsbackendapi.Controllers
             }
 
             var response = await _orderServices.GetAllOrdersByStoreIdAsync(storeid);
+
+            if (response == null || !response.Any())
+            {
+                return NotFound("No orders found for the given store.");
+            }
+
+            return StatusCode(200, response);
+        }
+
+        [HttpGet("completed-order/store/{storeid}")]
+        public async Task<IActionResult> GetCompletedOrdersAsync([FromRoute] int storeid)
+        {
+            if (storeid <= 0)
+            {
+                return BadRequest("Invalid store ID.");
+            }
+
+            var response = await _orderServices.GetCompletedOrdersAsync(storeid);
+
+            if (response == null || !response.Any())
+            {
+                return NotFound("No orders found for the given store.");
+            }
+
+            return StatusCode(200, response);
+        }
+
+        [HttpGet("incomplete-order/store/{storeid}")]
+        public async Task<IActionResult> GetOrdersWithoutCompletedStatusAsync([FromRoute] int storeid)
+        {
+            if (storeid <= 0)
+            {
+                return BadRequest("Invalid store ID.");
+            }
+
+            var response = await _orderServices.GetOrdersWithoutCompletedStatusAsync(storeid);
 
             if (response == null || !response.Any())
             {
