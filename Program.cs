@@ -51,7 +51,7 @@ builder.Services.AddScoped<ICategoriesRepository, CategoriesRepository>();
 builder.Services.AddScoped<IStoreMenuRepository, StoreMenuRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IRateRepository, RateRepository>();
-//builder.Services.AddScoped<IPaymentGateWayRepository, PaymentGateWayRepository>();
+builder.Services.AddScoped<IPaymentGateWayRepository, PaymentGateWayRepository>();
 builder.Services.AddScoped<IChatbotMessagesRepository, ChatbotMessagesRepository>();
 
 //services
@@ -63,7 +63,7 @@ builder.Services.AddScoped<ICategoriesService, CategoriesService>();
 builder.Services.AddScoped<IStoreMenuService, StoreMenuService>();
 builder.Services.AddScoped<IOrderServices, OrderServices>();
 builder.Services.AddScoped<IRateServices, RateServices>();
-//builder.Services.AddScoped<IPaymentGateWayService, PaymentGateWayService>();
+builder.Services.AddScoped<IPaymentGateWayService, PaymentGateWayService>();
 builder.Services.AddScoped<IChatbotMessagesSevices, ChatbotMessagesSevices>();
 
 //AddAutoMapper

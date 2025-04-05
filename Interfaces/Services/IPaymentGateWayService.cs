@@ -5,10 +5,10 @@ namespace OfficeEatsBackendApi.Interfaces.Services
 {
     public interface IPaymentGateWayService
     {
-        Task<object> GetAuthTokenAsync();
-        Task<CheckoutResponseDto> CreateCheckoutAsync(CheckoutRequestDto request);
-        Task<AddPaymentEventsDto> AddPaymentEvents(AddPaymentEventsDto request);
-        Task<Payments> UpdatePaymentAsync(UpdatePaymentDto request);
+        //Task<object> GetAuthTokenAsync();
+        //Task<CheckoutResponseDto> CreateCheckoutAsync(CheckoutRequestDto request);
+        //Task<AddPaymentEventsDto> AddPaymentEvents(AddPaymentEventsDto request);
+        //Task<Payments> UpdatePaymentAsync(UpdatePaymentDto request);
         Task<StoreBankingDetails> GetBankingDetailsByStoreIdAsync(int storeId);
 
     }

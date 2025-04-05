@@ -71,11 +71,22 @@ namespace officeeatsbackendapi.Controllers
             {
                 var results = await _shopServices.GetShopByOfficeIdAsync(officeid);
                 return StatusCode(200, results);
-            }
+        }
             catch (Exception ex)
             {
                return StatusCode(500, new { message = "Internal server error" });
             }
         }
+
+        //        [HttpGet("store-banking-details/{storeId}")]
+        //        public async Task<ActionResult<StoreBankingDetails>> StoreBankingDetails(int storeId)
+        //        {
+        //            var results = await _paymentGateWayService.GetBankingDetailsByStoreIdAsync(storeId);
+        //            if (results == null)
+        //            {
+        //                return NotFound("Banking details not found for the specified store.");
+        //            }
+        //            return StatusCode(200, results);
+        //        }
     }
 }
