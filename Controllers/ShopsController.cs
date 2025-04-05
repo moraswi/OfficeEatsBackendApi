@@ -67,15 +67,15 @@ namespace officeeatsbackendapi.Controllers
         [HttpGet("stores/{officeid}")]
         public async Task<IActionResult> GetShopByOfficeId([FromRoute] int officeid)
         {
-            //try
-            //{
+            try
+            {
                 var results = await _shopServices.GetShopByOfficeIdAsync(officeid);
                 return StatusCode(200, results);
-            //}
-            //catch (Exception ex)
-            //{
-            //    return StatusCode(500, new { message = "Internal server error" });
-            //}
+            }
+            catch (Exception ex)
+            {
+               return StatusCode(500, new { message = "Internal server error" });
+            }
         }
     }
 }
